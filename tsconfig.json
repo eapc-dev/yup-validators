@@ -1,0 +1,18 @@
+{
+  "version": "1.6.2",
+  "compilerOptions": {
+    "lib": ["es2018", "DOM"],
+    "target": "ES2018",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "strict": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "removeComments": false,
+    "forceConsistentCasingInFileNames": false,
+    "typeRoots": ["@types", "./node_modules/@types"]
+  },
+  "include": ["src", "specs", "bin", "lib", "./**/*.{js,ts}"],
+  "exclude": ["cdk.out"]
+}
