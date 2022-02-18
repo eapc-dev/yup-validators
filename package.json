@@ -7,7 +7,8 @@
   "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest src --watchAll",
+    "test": "jest src",
+    "test:watch": "jest src --watchAll",
     "lint": "eslint \"{src,specs}/**/*.{ts,tsx,js,jsx}\" --color --no-error-on-unmatched-pattern",
     "format": "prettier --write \"{src,specs}/**/*.{ts,tsx,js,jsx}\"",
     "prebuild": "npm run format && npm run lint",
