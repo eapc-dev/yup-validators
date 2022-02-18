@@ -1,24 +1,9 @@
 import * as yup from 'yup'
 
-import { IIntlShape } from '../../i18n/placeholder'
+import { IProps, TValidator, TValidatorResult } from '../../_types'
 
-export type TStringValidatorResult = (
-  schema: yup.StringSchema,
-  intl: IIntlShape
-) => yup.StringSchema
+export type TStringValidatorResult = TValidatorResult<yup.StringSchema>
 
-export type TStringValidator = () => TStringValidatorResult
+export type TStringValidator = TValidator<yup.StringSchema>
 
-export interface IStringProps {
-  /**
-   * Wether to enable or not this validator.
-   * @default true
-   */
-  active?: boolean
-
-  /**
-   * Defines a custom message ID for this validator.
-   * @default undefined
-   */
-  message?: string
-}
+export interface IStringProps extends IProps {}

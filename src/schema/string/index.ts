@@ -17,6 +17,8 @@ export const stringSchema = (
   return schema
 }
 
+export * from './_types'
+
 export * from './validators/containsFullWidthChars'
 export * from './validators/containsHalfWidthChars'
 export * from './validators/containsMultibyteChars'
