@@ -7,7 +7,7 @@
   "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest src --watchAll",
     "lint": "eslint \"{src,specs}/**/*.{ts,tsx,js,jsx}\" --color --no-error-on-unmatched-pattern",
     "format": "prettier --write \"{src,specs}/**/*.{ts,tsx,js,jsx}\"",
     "prebuild": "npm run format && npm run lint",
@@ -24,6 +24,7 @@
     "email": "pro.jordan.monier@gmail.com"
   },
   "dependencies": {
+    "@formatjs/intl": "^1.18.2",
     "@types/lodash.orderby": "^4.6.6",
     "@types/react": "^17.0.38",
     "@types/validator": "^13.7.1",
