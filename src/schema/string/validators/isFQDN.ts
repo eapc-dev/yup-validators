@@ -1,14 +1,14 @@
-import isEmail from 'validator/lib/isEmail'
+import isFQDN from 'validator/lib/isFQDN'
 
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isEmail>
+type TParameters = Parameters<typeof isFQDN>
 
-export interface IIsStringEmail extends IStringProps {
+export interface IIsStringFQDN extends IStringProps {
   options?: TParameters[1]
 }
 
-export const isStringEmail = (props?: IIsStringEmail): TStringValidatorResult => {
+export const isStringFQDN = (props?: IIsStringFQDN): TStringValidatorResult => {
   const { options, active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -17,11 +17,11 @@ export const isStringEmail = (props?: IIsStringEmail): TStringValidatorResult =>
         test: (value) => {
           if (!value) return true
 
-          return isEmail(value, options)
+          return isFQDN(value, options)
         },
         message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_email' },
-          { ...options, host_blacklist: undefined }
+          { id: message ?? 'e.field.s_must_be_a_fqdn' },
+          { ...options }
         ),
       })
     }

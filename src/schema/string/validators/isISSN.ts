@@ -1,14 +1,14 @@
-import isEmail from 'validator/lib/isEmail'
+import isISSN from 'validator/lib/isISSN'
 
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isEmail>
+type TParameters = Parameters<typeof isISSN>
 
-export interface IIsStringEmail extends IStringProps {
+export interface IIsStringISSN extends IStringProps {
   options?: TParameters[1]
 }
 
-export const isStringEmail = (props?: IIsStringEmail): TStringValidatorResult => {
+export const isStringISSN = (props?: IIsStringISSN): TStringValidatorResult => {
   const { options, active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -17,11 +17,11 @@ export const isStringEmail = (props?: IIsStringEmail): TStringValidatorResult =>
         test: (value) => {
           if (!value) return true
 
-          return isEmail(value, options)
+          return isISSN(value, options)
         },
         message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_email' },
-          { ...options, host_blacklist: undefined }
+          { id: message ?? 'e.field.s_must_be_an_issn' },
+          { ...options }
         ),
       })
     }

@@ -10,6 +10,15 @@ export type TStringValidatorResult = (
 export type TStringValidator = () => TStringValidatorResult
 
 export interface IStringProps {
+  /**
+   * Wether to enable or not this validator.
+   * @default true
+   */
   active?: boolean
+
+  /**
+   * Defines a custom message ID for this validator.
+   * @default undefined
+   */
   message?: string
 }
