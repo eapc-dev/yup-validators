@@ -1,11 +1,11 @@
-import isSurrogatePair from 'validator/lib/isSurrogatePair'
+import isFullWidth from 'validator/lib/isFullWidth'
 
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringSurrogatePairProps extends IStringProps {}
+export interface IContainsStringFullWidthCharsProps extends IStringProps {}
 
-export const isStringSurrogatePair = (
-  props?: IIsStringSurrogatePairProps
+export const containsStringFullWidthChars = (
+  props?: IContainsStringFullWidthCharsProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
@@ -15,10 +15,10 @@ export const isStringSurrogatePair = (
         test: (value) => {
           if (!value) return true
 
-          return isSurrogatePair(value)
+          return isFullWidth(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_contains_surrogate_pairs_chars',
+          id: message ?? 'e.field.s_must_contains_full_width_chars',
         }),
       })
     }

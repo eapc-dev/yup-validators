@@ -2,9 +2,11 @@ import isHalfWidth from 'validator/lib/isHalfWidth'
 
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringHalfWidthProps extends IStringProps {}
+export interface IContainsStringHalfWidthCharsProps extends IStringProps {}
 
-export const isStringHalfWidth = (props?: IIsStringHalfWidthProps): TStringValidatorResult => {
+export const containsStringHalfWidthChars = (
+  props?: IContainsStringHalfWidthCharsProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
