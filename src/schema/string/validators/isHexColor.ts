@@ -10,7 +10,7 @@ export const isStringHexColor = (props?: IIsStringHexColorProps): TStringValidat
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isHexColor(value)

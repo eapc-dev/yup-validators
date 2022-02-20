@@ -10,7 +10,7 @@ export const isStringISO8601 = (props?: IIsStringISO8601Props): TStringValidator
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isISO8601(value)

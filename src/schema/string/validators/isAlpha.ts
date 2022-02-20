@@ -15,7 +15,7 @@ export const isStringAlpha = (props?: IIsStringAlphaProps): TStringValidatorResu
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isAlpha(value, locale, options)

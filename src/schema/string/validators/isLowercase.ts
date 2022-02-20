@@ -10,7 +10,7 @@ export const isStringLowercase = (props?: IIsStringLowercaseProps): TStringValid
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isLowercase(value)

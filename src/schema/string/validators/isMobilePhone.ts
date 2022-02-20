@@ -10,12 +10,13 @@ export interface IIsStringMobilePhoneProps extends IStringProps {
 }
 
 export const isStringMobilePhone = (props?: IIsStringMobilePhoneProps): TStringValidatorResult => {
-  const { locale, options, active = true, message } = props ?? {}
+  const goodProps = props as IIsStringMobilePhoneProps
+  const { locale, options, active = true, message } = goodProps ?? {}
 
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isMobilePhone(value, locale, options)
@@ -23,7 +24,11 @@ export const isStringMobilePhone = (props?: IIsStringMobilePhoneProps): TStringV
         message: intl.formatErrorMessage(
           { id: message ?? 'e.field.s_must_be_a_mobile_phone' },
           {
-            locale: Array.isArray(locale) ? locale.join(', ') : locale,
+            locale: Array.isArray(locale)
+              ? locale.join(
+                  intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                )
+              : locale,
             ...options,
           }
         ),

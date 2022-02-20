@@ -10,7 +10,7 @@ export const isStringRFC3339 = (props?: IIsStringRFC3339Props): TStringValidator
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isRFC3339(value)

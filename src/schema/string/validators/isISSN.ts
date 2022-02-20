@@ -14,7 +14,7 @@ export const isStringISSN = (props?: IIsStringISSN): TStringValidatorResult => {
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isISSN(value, options)

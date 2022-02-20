@@ -14,14 +14,19 @@ export const isStringCurrency = (props?: IIsStringCurrencyProps): TStringValidat
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isCurrency(value, options)
         },
         message: intl.formatErrorMessage(
           { id: message ?? 'e.field.s_must_be_a_currency_amount' },
-          { ...options, digits_after_decimal: undefined }
+          {
+            ...options,
+            digits_after_decimal: options?.digits_after_decimal?.join(
+              intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+            ),
+          }
         ),
       })
     }

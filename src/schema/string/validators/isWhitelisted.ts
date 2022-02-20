@@ -14,14 +14,18 @@ export const isStringWhitelisted = (props: IIsStringWhitelisted): TStringValidat
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isWhitelisted(value, chars)
         },
         message: intl.formatErrorMessage(
           { id: message ?? 'e.field.s_must_be_Whitelisted' },
-          { chars: Array.isArray(chars) ? chars.join(', ') : chars }
+          {
+            chars: Array.isArray(chars)
+              ? chars.join(intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' }))
+              : chars,
+          }
         ),
       })
     }

@@ -14,14 +14,19 @@ export const isStringDate = (props?: IIsStringDateProps): TStringValidatorResult
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isDate(value, options)
         },
         message: intl.formatErrorMessage(
           { id: message ?? 'e.field.s_must_be_a_date' },
-          { ...options, delimiters: undefined }
+          {
+            ...options,
+            delimiters: options?.delimiters?.join(
+              intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+            ),
+          }
         ),
       })
     }

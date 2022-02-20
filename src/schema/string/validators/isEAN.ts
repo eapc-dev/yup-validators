@@ -10,7 +10,7 @@ export const isStringEAN = (props?: IIsStringEANProps): TStringValidatorResult =
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isEAN(value)

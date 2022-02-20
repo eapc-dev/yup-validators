@@ -14,7 +14,7 @@ export const isStringDivisibleBy = (props: IIsStringDivisibleByProps): TStringVa
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isDivisibleBy(value, number)

@@ -14,7 +14,7 @@ export const isStringURL = (props?: IIsStringURL): TStringValidatorResult => {
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isURL(value, options)
@@ -24,8 +24,12 @@ export const isStringURL = (props?: IIsStringURL): TStringValidatorResult => {
           {
             ...options,
             protocols: options?.protocols?.join(','),
-            host_whitelist: options?.host_whitelist?.map((e) => e.toString()).join(', '),
-            host_blacklist: options?.host_blacklist?.map((e) => e.toString()).join(', '),
+            host_whitelist: options?.host_whitelist
+              ?.map((e) => e.toString())
+              .join(intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })),
+            host_blacklist: options?.host_blacklist
+              ?.map((e) => e.toString())
+              .join(intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })),
           }
         ),
       })

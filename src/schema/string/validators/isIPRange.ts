@@ -14,7 +14,7 @@ export const isStringIPRange = (props?: IIsStringIPRange): TStringValidatorResul
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isIPRange(value, version)

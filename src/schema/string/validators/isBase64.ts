@@ -14,7 +14,7 @@ export const isStringBase64 = (props?: IIsStringBase64Props): TStringValidatorRe
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isBase64(value, options)

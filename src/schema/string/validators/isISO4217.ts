@@ -10,7 +10,7 @@ export const isStringISO4217 = (props?: IIsStringISO4217Props): TStringValidator
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isISO4217(value)

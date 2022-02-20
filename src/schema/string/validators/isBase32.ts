@@ -10,7 +10,7 @@ export const isStringBase32 = (props?: IIsStringBase32Props): TStringValidatorRe
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isBase32(value)

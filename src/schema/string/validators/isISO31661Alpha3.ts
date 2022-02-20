@@ -12,7 +12,7 @@ export const isStringISO31661Alpha3 = (
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isISO31661Alpha3(value)

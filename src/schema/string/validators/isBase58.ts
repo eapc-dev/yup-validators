@@ -10,7 +10,7 @@ export const isStringBase58 = (props?: IIsStringBase58Props): TStringValidatorRe
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isBase58(value)

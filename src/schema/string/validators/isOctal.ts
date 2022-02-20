@@ -10,7 +10,7 @@ export const isStringOctal = (props?: IIsStringOctalProps): TStringValidatorResu
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isOctal(value)

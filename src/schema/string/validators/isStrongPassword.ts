@@ -14,7 +14,7 @@ export const isStringStrongPassword = (props?: IIsStringStrongPassword): TString
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isStrongPassword(value, options)

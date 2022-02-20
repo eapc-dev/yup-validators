@@ -14,7 +14,7 @@ export const isStringBoolean = (props?: IIsStringBooleanProps): TStringValidator
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
-        test: (value) => {
+        test(value) {
           if (!value) return true
 
           return isBoolean(value, options)
