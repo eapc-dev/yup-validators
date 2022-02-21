@@ -1,3 +1,5 @@
+import mapKeys from 'lodash.mapkeys'
+import snakeCase from 'lodash.snakecase'
 import * as yup from 'yup'
 import Reference from 'yup/lib/Reference'
 import { Maybe } from 'yup/lib/types'
@@ -33,4 +35,10 @@ export const parseReference = <T extends Maybe<object>>(
   }
 
   return { ...(props as T), ...newValue }
+}
+
+export const formatMessageValues = (
+  values: Parameters<TFormatMessage>[1]
+): Parameters<TFormatMessage>[1] => {
+  return mapKeys(values, (v, k) => snakeCase(k))
 }

@@ -7,7 +7,6 @@ export interface IIsLatLongProps {}
 
 /**
  * Check if the string is a valid latitude-longitude coordinate in the format:
- *
  * `lat,long` or `lat, long`.
  */
 export const isLatLong = (

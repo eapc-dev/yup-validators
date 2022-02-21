@@ -15,6 +15,76 @@ describe('String validation', () => {
     ).toBe(true)
   })
 
+  it('isLength', () => {
+    expect(
+      string
+        .schema(
+          i18n.DEFAULT_INTL,
+          string.isRequired(),
+          string.isLength({
+            min: 6,
+            max: 12,
+          })
+        )
+        .isValidSync('123456')
+    ).toBe(true)
+
+    expect(
+      string
+        .schema(
+          i18n.DEFAULT_INTL,
+          string.isRequired(),
+          string.isLength({
+            min: 6,
+            max: 12,
+          })
+        )
+        .isValidSync('12345')
+    ).toBe(false)
+
+    expect(
+      string
+        .schema(
+          i18n.DEFAULT_INTL,
+          string.isRequired(),
+          string.isLength({
+            min: 6,
+            minIncluded: false,
+            max: 12,
+          })
+        )
+        .isValidSync('123456')
+    ).toBe(false)
+
+    expect(
+      string
+        .schema(
+          i18n.DEFAULT_INTL,
+          string.isRequired(),
+          string.isLength({
+            min: 6,
+            minIncluded: false,
+            max: 12,
+          })
+        )
+        .isValidSync('1234567')
+    ).toBe(true)
+
+    expect(
+      string
+        .schema(
+          i18n.DEFAULT_INTL,
+          string.isRequired(),
+          string.isLength({
+            min: 6,
+            minDelta: 1,
+            max: 12,
+          })
+        )
+        .isValidSync('1234567')
+    ).toBe(true)
+  })
+
   it('isAlphanumeric', () => {
     expect(
       string
