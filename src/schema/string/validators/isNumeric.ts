@@ -1,15 +1,21 @@
-import isNumeric from 'validator/lib/isNumeric'
+import _isNumeric from 'validator/lib/isNumeric'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isNumeric>
+type TParameters = Parameters<typeof _isNumeric>
 
-export interface IIsStringNumeric extends IStringProps {
+export interface IIsNumericProps {
   options?: TParameters[1]
 }
 
-export const isStringNumeric = (props?: IIsStringNumeric): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+/**
+ * Check if the string contains only numbers.
+ */
+export const isNumeric = (
+  props?: TReferenceProps<IIsNumericProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringNumeric = (props?: IIsStringNumeric): TStringValidatorResul
         test(value) {
           if (!value) return true
 
-          return isNumeric(value, options)
+          const { options } = parseReference<IIsNumericProps>(this, props)
+
+          const result = _isNumeric(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_numeric' },
+                  { ...options }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_numeric' },
-          { ...options }
-        ),
       })
     }
 

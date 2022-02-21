@@ -1,15 +1,21 @@
-import isByteLength from 'validator/lib/isByteLength'
+import _isByteLength from 'validator/lib/isByteLength'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isByteLength>
+type TParameters = Parameters<typeof _isByteLength>
 
-export interface IIsStringByteLengthProps extends IStringProps {
+export interface IIsByteLengthProps {
   options?: TParameters[1]
 }
 
-export const isStringByteLength = (props?: IIsStringByteLengthProps): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+/**
+ * Check if the string's length (in UTF-8 bytes) falls in a range.
+ */
+export const isByteLength = (
+  props?: TReferenceProps<IIsByteLengthProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringByteLength = (props?: IIsStringByteLengthProps): TStringVal
         test(value) {
           if (!value) return true
 
-          return isByteLength(value, options)
+          const { options } = parseReference<IIsByteLengthProps>(this, props)
+
+          const result = _isByteLength(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_byte_length' },
+                  { ...options }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_byte_length' },
-          { ...options }
-        ),
       })
     }
 

@@ -1,10 +1,16 @@
-import isLocale from 'validator/lib/isLocale'
+import _isLocale from 'validator/lib/isLocale'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringLocaleProps extends IStringProps {}
+export interface IIsLocaleProps {}
 
-export const isStringLocale = (props?: IIsStringLocaleProps): TStringValidatorResult => {
+/**
+ * Check if the string is a locale.
+ */
+export const isLocale = (
+  props?: TReferenceProps<IIsLocaleProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringLocale = (props?: IIsStringLocaleProps): TStringValidatorRe
         test(value) {
           if (!value) return true
 
-          return isLocale(value)
+          return _isLocale(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_locale',

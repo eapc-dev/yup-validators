@@ -1,15 +1,24 @@
-import isUUID from 'validator/lib/isUUID'
+import _isUUID from 'validator/lib/isUUID'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isUUID>
+type TParameters = Parameters<typeof _isUUID>
 
-export interface IIsStringUUID extends IStringProps {
+export interface IIsUUIDProps {
+  /**
+   * UUID version
+   */
   version?: TParameters[1]
 }
 
-export const isStringUUID = (props?: IIsStringUUID): TStringValidatorResult => {
-  const { version, active = true, message } = props ?? {}
+/**
+ * Check if the string is a UUID (version 3, 4 or 5).
+ */
+export const isUUID = (
+  props?: TReferenceProps<IIsUUIDProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +26,19 @@ export const isStringUUID = (props?: IIsStringUUID): TStringValidatorResult => {
         test(value) {
           if (!value) return true
 
-          return isUUID(value, version)
+          const { version } = parseReference<IIsUUIDProps>(this, props)
+
+          const result = _isUUID(value, version)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_uuid' },
+                  { version }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_uuid' },
-          { version }
-        ),
       })
     }
 

@@ -1,15 +1,21 @@
-import isPassportNumber from 'validator/lib/isPassportNumber'
+import _isPassportNumber from 'validator/lib/isPassportNumber'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isPassportNumber>
+type TParameters = Parameters<typeof _isPassportNumber>
 
-export interface IIsStringPassportNumber extends IStringProps {
+export interface IIsPassportNumberProps {
   countryCode?: TParameters[1]
 }
 
-export const isStringPassportNumber = (props?: IIsStringPassportNumber): TStringValidatorResult => {
-  const { countryCode, active = true, message } = props ?? {}
+/**
+ * Check if the string is a valid passport number relative to a specific country code.
+ */
+export const isPassportNumber = (
+  props?: TReferenceProps<IIsPassportNumberProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringPassportNumber = (props?: IIsStringPassportNumber): TString
         test(value) {
           if (!value) return true
 
-          return isPassportNumber(value, countryCode)
+          const { countryCode } = parseReference<IIsPassportNumberProps>(this, props)
+
+          const result = _isPassportNumber(value, countryCode)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_a_passport_number' },
+                  { country_code: countryCode }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_a_passport_number' },
-          { countryCode }
-        ),
       })
     }
 

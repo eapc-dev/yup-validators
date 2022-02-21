@@ -1,18 +1,22 @@
-import isAlphanumeric from 'validator/lib/isAlphanumeric'
+import _isAlphanumeric from 'validator/lib/isAlphanumeric'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isAlphanumeric>
+type TParameters = Parameters<typeof _isAlphanumeric>
 
-export interface IIsStringAlphanumericProps extends IStringProps {
+export interface IIsAlphanumericProps {
   locale?: TParameters[1]
   options?: TParameters[2]
 }
 
-export const isStringAlphanumeric = (
-  props?: IIsStringAlphanumericProps
+/**
+ * Check if the string contains only letters and numbers.
+ */
+export const isAlphanumeric = (
+  props?: TReferenceProps<IIsAlphanumericProps> & IStringProps
 ): TStringValidatorResult => {
-  const { locale, options, active = true, message } = props ?? {}
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -20,9 +24,23 @@ export const isStringAlphanumeric = (
         test(value) {
           if (!value) return true
 
-          return isAlphanumeric(value, locale, options)
+          const { locale, options } = parseReference<IIsAlphanumericProps>(this, props)
+
+          const result = _isAlphanumeric(value, locale, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_alphanumeric' },
+                  {
+                    locale,
+                    ...options,
+                    ignore: options?.ignore?.toString(),
+                  }
+                ),
+              })
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_alphanumeric' }),
       })
     }
 

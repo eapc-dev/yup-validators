@@ -1,15 +1,21 @@
-import isEmail from 'validator/lib/isEmail'
+import _isEmail from 'validator/lib/isEmail'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isEmail>
+type TParameters = Parameters<typeof _isEmail>
 
-export interface IIsStringEmail extends IStringProps {
+export interface IIsEmailProps {
   options?: TParameters[1]
 }
 
-export const isStringEmail = (props?: IIsStringEmail): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+/**
+ * Check if the string is an email.
+ */
+export const isEmail = (
+  props?: TReferenceProps<IIsEmailProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,17 +23,24 @@ export const isStringEmail = (props?: IIsStringEmail): TStringValidatorResult =>
         test(value) {
           if (!value) return true
 
-          return isEmail(value, options)
+          const { options } = parseReference<IIsEmailProps>(this, props)
+
+          const result = _isEmail(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_email' },
+                  {
+                    ...options,
+                    host_blacklist: options?.host_blacklist?.join(
+                      intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                    ),
+                  }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_email' },
-          {
-            ...options,
-            host_blacklist: options?.host_blacklist?.join(
-              intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
-            ),
-          }
-        ),
       })
     }
 

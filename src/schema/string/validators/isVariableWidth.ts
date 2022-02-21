@@ -1,11 +1,15 @@
-import isVariableWidth from 'validator/lib/isVariableWidth'
+import _isVariableWidth from 'validator/lib/isVariableWidth'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringVariableWidthProps extends IStringProps {}
+export interface IIsVariableWidthProps {}
 
-export const isStringVariableWidth = (
-  props?: IIsStringVariableWidthProps
+/**
+ * Check if the string contains a mixture of full and half-width chars.
+ */
+export const isVariableWidth = (
+  props?: TReferenceProps<IIsVariableWidthProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
@@ -15,7 +19,7 @@ export const isStringVariableWidth = (
         test(value) {
           if (!value) return true
 
-          return isVariableWidth(value)
+          return _isVariableWidth(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_variable_width',

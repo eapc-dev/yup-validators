@@ -1,10 +1,16 @@
-import isMongoId from 'validator/lib/isMongoId'
+import _isMongoId from 'validator/lib/isMongoId'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringMongoIdProps extends IStringProps {}
+export interface IIsMongoIdProps {}
 
-export const isStringMongoId = (props?: IIsStringMongoIdProps): TStringValidatorResult => {
+/**
+ * Check if the string is a valid hex-encoded representation of a [MongoDB ObjectId](http://docs.mongodb.org/manual/reference/object-id/).
+ */
+export const isMongoId = (
+  props?: TReferenceProps<IIsMongoIdProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringMongoId = (props?: IIsStringMongoIdProps): TStringValidator
         test(value) {
           if (!value) return true
 
-          return isMongoId(value)
+          return _isMongoId(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_mongo_id',

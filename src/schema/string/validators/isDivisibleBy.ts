@@ -1,15 +1,21 @@
-import isDivisibleBy from 'validator/lib/isDivisibleBy'
+import _isDivisibleBy from 'validator/lib/isDivisibleBy'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isDivisibleBy>
+type TParameters = Parameters<typeof _isDivisibleBy>
 
-export interface IIsStringDivisibleByProps extends IStringProps {
+export interface IIsDivisibleByProps {
   number: TParameters[1]
 }
 
-export const isStringDivisibleBy = (props: IIsStringDivisibleByProps): TStringValidatorResult => {
-  const { number, active = true, message } = props ?? {}
+/**
+ * Check if the string is a number that's divisible by another.
+ */
+export const isDivisibleBy = (
+  props: TReferenceProps<IIsDivisibleByProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringDivisibleBy = (props: IIsStringDivisibleByProps): TStringVa
         test(value) {
           if (!value) return true
 
-          return isDivisibleBy(value, number)
+          const { number } = parseReference<IIsDivisibleByProps>(this, props)
+
+          const result = _isDivisibleBy(value, number)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_divisible_by' },
+                  { number }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_divisible_by' },
-          { number: number }
-        ),
       })
     }
 

@@ -1,15 +1,21 @@
-import isBoolean from 'validator/lib/isBoolean'
+import _isBoolean from 'validator/lib/isBoolean'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isBoolean>
+type TParameters = Parameters<typeof _isBoolean>
 
-export interface IIsStringBooleanProps extends IStringProps {
+export interface IIsBooleanProps {
   options?: TParameters[1]
 }
 
-export const isStringBoolean = (props?: IIsStringBooleanProps): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+/**
+ * Check if a string is a boolean.
+ */
+export const isBoolean = (
+  props?: TReferenceProps<IIsBooleanProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringBoolean = (props?: IIsStringBooleanProps): TStringValidator
         test(value) {
           if (!value) return true
 
-          return isBoolean(value, options)
+          const { options } = parseReference<IIsBooleanProps>(this, props)
+
+          const result = _isBoolean(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_a_boolean' },
+                  { ...options }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_a_boolean' },
-          { ...options }
-        ),
       })
     }
 

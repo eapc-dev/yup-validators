@@ -1,10 +1,16 @@
-import isIBAN from 'validator/lib/isIBAN'
+import _isIBAN from 'validator/lib/isIBAN'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringIBANProps extends IStringProps {}
+export interface IIsIBANProps {}
 
-export const isStringIBAN = (props?: IIsStringIBANProps): TStringValidatorResult => {
+/**
+ * Check if a string is a IBAN (International Bank Account Number).
+ */
+export const isIBAN = (
+  props?: TReferenceProps<IIsIBANProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringIBAN = (props?: IIsStringIBANProps): TStringValidatorResult
         test(value) {
           if (!value) return true
 
-          return isIBAN(value)
+          return _isIBAN(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_an_iban',

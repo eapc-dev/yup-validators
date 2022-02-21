@@ -1,15 +1,21 @@
-import isPostalCode from 'validator/lib/isPostalCode'
+import _isPostalCode from 'validator/lib/isPostalCode'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isPostalCode>
+type TParameters = Parameters<typeof _isPostalCode>
 
-export interface IIsStringPostalCode extends IStringProps {
+export interface IIsPostalCodeProps {
   locale: TParameters[1]
 }
 
-export const isStringPostalCode = (props: IIsStringPostalCode): TStringValidatorResult => {
-  const { locale, active = true, message } = props ?? {}
+/**
+ * Check if the string is a postal code.
+ */
+export const isPostalCode = (
+  props: TReferenceProps<IIsPostalCodeProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringPostalCode = (props: IIsStringPostalCode): TStringValidator
         test(value) {
           if (!value) return true
 
-          return isPostalCode(value, locale)
+          const { locale } = parseReference<IIsPostalCodeProps>(this, props)
+
+          const result = _isPostalCode(value, locale)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_a_postal_code' },
+                  { locale }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_a_postal_code' },
-          { locale }
-        ),
       })
     }
 

@@ -1,11 +1,15 @@
 import isHalfWidth from 'validator/lib/isHalfWidth'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IContainsStringHalfWidthCharsProps extends IStringProps {}
+export interface IContainsHalfWidthCharsProps {}
 
-export const containsStringHalfWidthChars = (
-  props?: IContainsStringHalfWidthCharsProps
+/**
+ * Check if the string contains any half-width chars.
+ */
+export const containsHalfWidthChars = (
+  props?: TReferenceProps<IContainsHalfWidthCharsProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 

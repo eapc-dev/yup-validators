@@ -1,10 +1,16 @@
-import isEAN from 'validator/lib/isEAN'
+import _isEAN from 'validator/lib/isEAN'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringEANProps extends IStringProps {}
+export interface IIsEANProps {}
 
-export const isStringEAN = (props?: IIsStringEANProps): TStringValidatorResult => {
+/**
+ * Check if the string is an EAN (European Article Number).
+ */
+export const isEAN = (
+  props?: TReferenceProps<IIsEANProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringEAN = (props?: IIsStringEANProps): TStringValidatorResult =
         test(value) {
           if (!value) return true
 
-          return isEAN(value)
+          return _isEAN(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_an_ean',

@@ -1,10 +1,16 @@
-import isMimeType from 'validator/lib/isMimeType'
+import _isMimeType from 'validator/lib/isMimeType'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringMimeTypeProps extends IStringProps {}
+export interface IIsMimeTypeProps {}
 
-export const isStringMimeType = (props?: IIsStringMimeTypeProps): TStringValidatorResult => {
+/**
+ * Check if the string matches to a valid [MIME type](https://en.wikipedia.org/wiki/Media_type) format.
+ */
+export const isMimeType = (
+  props?: TReferenceProps<IIsMimeTypeProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringMimeType = (props?: IIsStringMimeTypeProps): TStringValidat
         test(value) {
           if (!value) return true
 
-          return isMimeType(value)
+          return _isMimeType(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_mime_type',

@@ -1,11 +1,15 @@
 import isFullWidth from 'validator/lib/isFullWidth'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IContainsStringFullWidthCharsProps extends IStringProps {}
+export interface IContainsFullWidthCharsProps {}
 
-export const containsStringFullWidthChars = (
-  props?: IContainsStringFullWidthCharsProps
+/**
+ * Check if the string contains any full-width chars.
+ */
+export const containsFullWidthChars = (
+  props?: TReferenceProps<IContainsFullWidthCharsProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 

@@ -1,11 +1,15 @@
 import isMultibyte from 'validator/lib/isMultibyte'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IContainsStringMultibyteCharsProps extends IStringProps {}
+export interface IContainsMultibyteCharsProps {}
 
-export const containsStringMultibyteChars = (
-  props?: IContainsStringMultibyteCharsProps
+/**
+ * Check if the string contains one or more multibyte chars.
+ */
+export const containsMultibyteChars = (
+  props?: TReferenceProps<IContainsMultibyteCharsProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 

@@ -1,10 +1,16 @@
-import isISRC from 'validator/lib/isISRC'
+import _isISRC from 'validator/lib/isISRC'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringISRCProps extends IStringProps {}
+export interface IIsISRCProps {}
 
-export const isStringISRC = (props?: IIsStringISRCProps): TStringValidatorResult => {
+/**
+ * Check if the string is a [ISRC](https://en.wikipedia.org/wiki/International_Standard_Recording_Code).
+ */
+export const isISRC = (
+  props?: TReferenceProps<IIsISRCProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringISRC = (props?: IIsStringISRCProps): TStringValidatorResult
         test(value) {
           if (!value) return true
 
-          return isISRC(value)
+          return _isISRC(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_an_isrc',

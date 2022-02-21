@@ -1,10 +1,16 @@
-import isMACAddress from 'validator/lib/isMACAddress'
+import _isMACAddress from 'validator/lib/isMACAddress'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringMACAddressProps extends IStringProps {}
+export interface IIsMACAddressProps {}
 
-export const isStringMACAddress = (props?: IIsStringMACAddressProps): TStringValidatorResult => {
+/**
+ * Check if the string is a MAC address.
+ */
+export const isMACAddress = (
+  props?: TReferenceProps<IIsMACAddressProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringMACAddress = (props?: IIsStringMACAddressProps): TStringVal
         test(value) {
           if (!value) return true
 
-          return isMACAddress(value)
+          return _isMACAddress(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_mac_address',

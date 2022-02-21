@@ -1,11 +1,15 @@
-import isEthereumAddress from 'validator/lib/isEthereumAddress'
+import _isEthereumAddress from 'validator/lib/isEthereumAddress'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringEthereumAddressProps extends IStringProps {}
+export interface IIsEthereumAddressProps {}
 
-export const isStringEthereumAddress = (
-  props?: IIsStringEthereumAddressProps
+/**
+ * Check if the string is an [Ethereum](https://ethereum.org/) address using basic regex. Does not validate address checksums.
+ */
+export const isEthereumAddress = (
+  props?: TReferenceProps<IIsEthereumAddressProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
@@ -15,7 +19,7 @@ export const isStringEthereumAddress = (
         test(value) {
           if (!value) return true
 
-          return isEthereumAddress(value)
+          return _isEthereumAddress(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_an_ethereum_address',

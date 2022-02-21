@@ -1,15 +1,21 @@
-import isBase64 from 'validator/lib/isBase64'
+import _isBase64 from 'validator/lib/isBase64'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isBase64>
+type TParameters = Parameters<typeof _isBase64>
 
-export interface IIsStringBase64Props extends IStringProps {
+export interface IIsBase64Props {
   options?: TParameters[1]
 }
 
-export const isStringBase64 = (props?: IIsStringBase64Props): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+/**
+ * Check if a string is base64 encoded.
+ */
+export const isBase64 = (
+  props?: TReferenceProps<IIsBase64Props> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,9 +23,19 @@ export const isStringBase64 = (props?: IIsStringBase64Props): TStringValidatorRe
         test(value) {
           if (!value) return true
 
-          return isBase64(value, options)
+          const { options } = parseReference<IIsBase64Props>(this, props)
+
+          const result = _isBase64(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_base64' },
+                  { ...options }
+                ),
+              })
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_base64' }),
       })
     }
 

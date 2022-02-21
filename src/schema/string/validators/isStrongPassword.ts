@@ -1,15 +1,21 @@
-import isStrongPassword from 'validator/lib/isStrongPassword'
+import _isStrongPassword from 'validator/lib/isStrongPassword'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isStrongPassword>
+type TParameters = Parameters<typeof _isStrongPassword>
 
-export interface IIsStringStrongPassword extends IStringProps {
+export interface IIsStrongPasswordProps {
   options?: TParameters[1]
 }
 
-export const isStringStrongPassword = (props?: IIsStringStrongPassword): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+/**
+ * Check if string is considered a strong password.
+ */
+export const isStrongPassword = (
+  props?: TReferenceProps<IIsStrongPasswordProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,14 +23,21 @@ export const isStringStrongPassword = (props?: IIsStringStrongPassword): TString
         test(value) {
           if (!value) return true
 
-          return isStrongPassword(value, options)
+          const { options } = parseReference<IIsStrongPasswordProps>(this, props)
+
+          const result = _isStrongPassword(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_a_strong_password' },
+                  {
+                    ...options,
+                  }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_a_strong_password' },
-          {
-            ...options,
-          }
-        ),
       })
     }
 

@@ -1,10 +1,16 @@
-import isISO4217 from 'validator/lib/isISO4217'
+import _isISO4217 from 'validator/lib/isISO4217'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringISO4217Props extends IStringProps {}
+export interface IIsISO4217Props {}
 
-export const isStringISO4217 = (props?: IIsStringISO4217Props): TStringValidatorResult => {
+/**
+ * Check if the string is a valid [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) officially assigned currency code.
+ */
+export const isISO4217 = (
+  props?: TReferenceProps<IIsISO4217Props> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringISO4217 = (props?: IIsStringISO4217Props): TStringValidator
         test(value) {
           if (!value) return true
 
-          return isISO4217(value)
+          return _isISO4217(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_an_iso4217_currency_code',

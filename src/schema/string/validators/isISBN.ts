@@ -1,15 +1,21 @@
-import isISBN from 'validator/lib/isISBN'
+import _isISBN from 'validator/lib/isISBN'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isISBN>
+type TParameters = Parameters<typeof _isISBN>
 
-export interface IIsStringISBN extends IStringProps {
+export interface IIsISBNProps {
   version?: TParameters[1]
 }
 
-export const isStringISBN = (props?: IIsStringISBN): TStringValidatorResult => {
-  const { version, active = true, message } = props ?? {}
+/**
+ * Check if the string is an ISBN (version 10 or 13).
+ */
+export const isISBN = (
+  props?: TReferenceProps<IIsISBNProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringISBN = (props?: IIsStringISBN): TStringValidatorResult => {
         test(value) {
           if (!value) return true
 
-          return isISBN(value, version)
+          const { version } = parseReference<IIsISBNProps>(this, props)
+
+          const result = _isISBN(value, version)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_isbn' },
+                  { version }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_isbn' },
-          { version }
-        ),
       })
     }
 

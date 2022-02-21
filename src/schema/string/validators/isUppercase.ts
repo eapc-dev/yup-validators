@@ -1,10 +1,16 @@
-import isUppercase from 'validator/lib/isUppercase'
+import _isUppercase from 'validator/lib/isUppercase'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringUppercaseProps extends IStringProps {}
+export interface IIsUppercaseProps {}
 
-export const isStringUppercase = (props?: IIsStringUppercaseProps): TStringValidatorResult => {
+/**
+ * Check if the string is uppercase.
+ */
+export const isUppercase = (
+  props?: TReferenceProps<IIsUppercaseProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringUppercase = (props?: IIsStringUppercaseProps): TStringValid
         test(value) {
           if (!value) return true
 
-          return isUppercase(value)
+          return _isUppercase(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_uppercase',

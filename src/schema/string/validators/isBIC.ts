@@ -1,10 +1,16 @@
-import isBIC from 'validator/lib/isBIC'
+import _isBIC from 'validator/lib/isBIC'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringBICProps extends IStringProps {}
+export interface IIsBICProps {}
 
-export const isStringBIC = (props?: IIsStringBICProps): TStringValidatorResult => {
+/**
+ * Check if a string is a BIC (Bank Identification Code) or SWIFT code.
+ */
+export const isBIC = (
+  props?: TReferenceProps<IIsBICProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringBIC = (props?: IIsStringBICProps): TStringValidatorResult =
         test(value) {
           if (!value) return true
 
-          return isBIC(value)
+          return _isBIC(value)
         },
         message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_bic' }),
       })

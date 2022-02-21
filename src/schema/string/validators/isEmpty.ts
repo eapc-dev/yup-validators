@@ -1,15 +1,21 @@
-import isEmpty from 'validator/lib/isEmpty'
+import _isEmpty from 'validator/lib/isEmpty'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isEmpty>
+type TParameters = Parameters<typeof _isEmpty>
 
-export interface IIsStringEmpty extends IStringProps {
+/**
+ * Check if the string has a length of zero.
+ */
+export interface IIsEmptyProps {
   options?: TParameters[1]
 }
 
-export const isStringEmpty = (props?: IIsStringEmpty): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+export const isEmpty = (
+  props?: TReferenceProps<IIsEmptyProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringEmpty = (props?: IIsStringEmpty): TStringValidatorResult =>
         test(value) {
           if (!value) return true
 
-          return isEmpty(value, options)
+          const { options } = parseReference<IIsEmptyProps>(this, props)
+
+          const result = _isEmpty(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_empty' },
+                  { ...options }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_empty' },
-          { ...options }
-        ),
       })
     }
 

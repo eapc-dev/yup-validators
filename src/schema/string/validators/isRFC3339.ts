@@ -1,10 +1,16 @@
-import isRFC3339 from 'validator/lib/isRFC3339'
+import _isRFC3339 from 'validator/lib/isRFC3339'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringRFC3339Props extends IStringProps {}
+export interface IIsRFC3339Props {}
 
-export const isStringRFC3339 = (props?: IIsStringRFC3339Props): TStringValidatorResult => {
+/**
+ * Check if the string is a valid [RFC 3339](https://tools.ietf.org/html/rfc3339) date.
+ */
+export const isRFC3339 = (
+  props?: TReferenceProps<IIsRFC3339Props> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringRFC3339 = (props?: IIsStringRFC3339Props): TStringValidator
         test(value) {
           if (!value) return true
 
-          return isRFC3339(value)
+          return _isRFC3339(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_rfc3339_date',

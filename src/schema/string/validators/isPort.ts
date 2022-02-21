@@ -1,10 +1,16 @@
-import isPort from 'validator/lib/isPort'
+import _isPort from 'validator/lib/isPort'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringPortProps extends IStringProps {}
+export interface IIsPortProps {}
 
-export const isStringPort = (props?: IIsStringPortProps): TStringValidatorResult => {
+/**
+ * Check if the string is a valid port number.
+ */
+export const isPort = (
+  props?: TReferenceProps<IIsPortProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringPort = (props?: IIsStringPortProps): TStringValidatorResult
         test(value) {
           if (!value) return true
 
-          return isPort(value)
+          return _isPort(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_port_number',

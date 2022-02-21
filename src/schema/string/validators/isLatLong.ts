@@ -1,10 +1,18 @@
-import isLatLong from 'validator/lib/isLatLong'
+import _isLatLong from 'validator/lib/isLatLong'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringLatLong extends IStringProps {}
+export interface IIsLatLongProps {}
 
-export const isStringLatLong = (props?: IIsStringLatLong): TStringValidatorResult => {
+/**
+ * Check if the string is a valid latitude-longitude coordinate in the format:
+ *
+ * `lat,long` or `lat, long`.
+ */
+export const isLatLong = (
+  props?: TReferenceProps<IIsLatLongProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +21,7 @@ export const isStringLatLong = (props?: IIsStringLatLong): TStringValidatorResul
         test(value) {
           if (!value) return true
 
-          return isLatLong(value)
+          return _isLatLong(value)
         },
         message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_a_lat_long' }),
       })

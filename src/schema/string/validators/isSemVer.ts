@@ -1,10 +1,16 @@
-import isSemVer from 'validator/lib/isSemVer'
+import _isSemVer from 'validator/lib/isSemVer'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringSemVerProps extends IStringProps {}
+export interface IIsSemVerProps {}
 
-export const isStringSemVer = (props?: IIsStringSemVerProps): TStringValidatorResult => {
+/**
+ * Check if the string is a Semantic Versioning Specification (SemVer).
+ */
+export const isSemVer = (
+  props?: TReferenceProps<IIsSemVerProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringSemVer = (props?: IIsStringSemVerProps): TStringValidatorRe
         test(value) {
           if (!value) return true
 
-          return isSemVer(value)
+          return _isSemVer(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_sem_ver',

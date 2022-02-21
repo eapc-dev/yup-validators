@@ -1,10 +1,16 @@
-import isDataURI from 'validator/lib/isDataURI'
+import _isDataURI from 'validator/lib/isDataURI'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringDataURIProps extends IStringProps {}
+export interface IIsDataURIProps {}
 
-export const isStringDataURI = (props?: IIsStringDataURIProps): TStringValidatorResult => {
+/**
+ * Check if the string is a [data uri format](https://developer.mozilla.org/en-US/docs/Web/HTTP/data_URIs).
+ */
+export const isDataURI = (
+  props?: TReferenceProps<IIsDataURIProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringDataURI = (props?: IIsStringDataURIProps): TStringValidator
         test(value) {
           if (!value) return true
 
-          return isDataURI(value)
+          return _isDataURI(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_data_uri',

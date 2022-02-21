@@ -1,15 +1,21 @@
-import isIP from 'validator/lib/isIP'
+import _isIP from 'validator/lib/isIP'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isIP>
+type TParameters = Parameters<typeof _isIP>
 
-export interface IIsStringIP extends IStringProps {
+export interface IIsIPProps {
   version?: TParameters[1]
 }
 
-export const isStringIO = (props?: IIsStringIP): TStringValidatorResult => {
-  const { version, active = true, message } = props ?? {}
+/**
+ * Check if the string is an IP (version 4 or 6).
+ */
+export const isIP = (
+  props?: TReferenceProps<IIsIPProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,9 +23,19 @@ export const isStringIO = (props?: IIsStringIP): TStringValidatorResult => {
         test(value) {
           if (!value) return true
 
-          return isIP(value, version)
+          const { version } = parseReference<IIsIPProps>(this, props)
+
+          const result = _isIP(value, version)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_ip' },
+                  { version }
+                ),
+              })
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_an_ip' }, { version }),
       })
     }
 

@@ -1,15 +1,21 @@
-import isHash from 'validator/lib/isHash'
+import _isHash from 'validator/lib/isHash'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isHash>
+type TParameters = Parameters<typeof _isHash>
 
-export interface IIsStringHashProps extends IStringProps {
+export interface IIsHashProps {
   algorithm: TParameters[1]
 }
 
-export const isStringHash = (props: IIsStringHashProps): TStringValidatorResult => {
-  const { algorithm, active = true, message } = props ?? {}
+/**
+ * Check if the string is a hash of type algorithm.
+ */
+export const isHash = (
+  props: TReferenceProps<IIsHashProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringHash = (props: IIsStringHashProps): TStringValidatorResult 
         test(value) {
           if (!value) return true
 
-          return isHash(value, algorithm)
+          const { algorithm } = parseReference<IIsHashProps>(this, props)
+
+          const result = _isHash(value, algorithm)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_hash' },
+                  { algorithm }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_hash' },
-          { algorithm }
-        ),
       })
     }
 

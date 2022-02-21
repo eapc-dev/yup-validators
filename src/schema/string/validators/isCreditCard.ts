@@ -1,10 +1,16 @@
-import isCreditCard from 'validator/lib/isCreditCard'
+import _isCreditCard from 'validator/lib/isCreditCard'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringCreditCardProps extends IStringProps {}
+export interface IIsCreditCardProps {}
 
-export const isStringCreditCard = (props?: IIsStringCreditCardProps): TStringValidatorResult => {
+/**
+ * Check if the string is a credit card.
+ */
+export const isCreditCard = (
+  props?: TReferenceProps<IIsCreditCardProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringCreditCard = (props?: IIsStringCreditCardProps): TStringVal
         test(value) {
           if (!value) return true
 
-          return isCreditCard(value)
+          return _isCreditCard(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_a_credit_card_number',

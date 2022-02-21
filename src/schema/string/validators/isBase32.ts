@@ -1,10 +1,16 @@
-import isBase32 from 'validator/lib/isBase32'
+import _isBase32 from 'validator/lib/isBase32'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringBase32Props extends IStringProps {}
+export interface IIsBase32Props {}
 
-export const isStringBase32 = (props?: IIsStringBase32Props): TStringValidatorResult => {
+/**
+ * Check if a string is base32 encoded.
+ */
+export const isBase32 = (
+  props?: TReferenceProps<IIsBase32Props> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringBase32 = (props?: IIsStringBase32Props): TStringValidatorRe
         test(value) {
           if (!value) return true
 
-          return isBase32(value)
+          return _isBase32(value)
         },
         message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_base32' }),
       })

@@ -1,10 +1,16 @@
-import isBase58 from 'validator/lib/isBase58'
+import _isBase58 from 'validator/lib/isBase58'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringBase58Props extends IStringProps {}
+export interface IIsBase58Props {}
 
-export const isStringBase58 = (props?: IIsStringBase58Props): TStringValidatorResult => {
+/**
+ * check if a string is base58 encoded
+ */
+export const isBase58 = (
+  props?: TReferenceProps<IIsBase58Props> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringBase58 = (props?: IIsStringBase58Props): TStringValidatorRe
         test(value) {
           if (!value) return true
 
-          return isBase58(value)
+          return _isBase58(value)
         },
         message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_base58' }),
       })

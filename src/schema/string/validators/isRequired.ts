@@ -1,8 +1,14 @@
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringRequiredProps extends IStringProps {}
+export interface IIsRequiredProps {}
 
-export const isStringRequired = (props?: IStringProps): TStringValidatorResult => {
+/**
+ * Check if the string is not empty.
+ */
+export const isRequired = (
+  props?: TReferenceProps<IStringProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {

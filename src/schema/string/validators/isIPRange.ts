@@ -1,15 +1,21 @@
-import isIPRange from 'validator/lib/isIPRange'
+import _isIPRange from 'validator/lib/isIPRange'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isIPRange>
+type TParameters = Parameters<typeof _isIPRange>
 
-export interface IIsStringIPRange extends IStringProps {
+export interface IIsIPRangeProps {
   version?: TParameters[1]
 }
 
-export const isStringIPRange = (props?: IIsStringIPRange): TStringValidatorResult => {
-  const { version, active = true, message } = props ?? {}
+/**
+ * Check if the string is an IP Range (version 4 or 6).
+ */
+export const isIPRange = (
+  props?: TReferenceProps<IIsIPRangeProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,9 +23,19 @@ export const isStringIPRange = (props?: IIsStringIPRange): TStringValidatorResul
         test(value) {
           if (!value) return true
 
-          return isIPRange(value, version)
+          const { version } = parseReference<IIsIPRangeProps>(this, props)
+
+          const result = _isIPRange(value, version)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_ip_range' },
+                  { version }
+                ),
+              })
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_an_ip' }, { version }),
       })
     }
 

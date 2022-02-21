@@ -1,10 +1,16 @@
-import isHexColor from 'validator/lib/isHexColor'
+import _isHexColor from 'validator/lib/isHexColor'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IIsStringHexColorProps extends IStringProps {}
+export interface IIsHexColorProps {}
 
-export const isStringHexColor = (props?: IIsStringHexColorProps): TStringValidatorResult => {
+/**
+ * Check if the string is a hexadecimal color.
+ */
+export const isHexColor = (
+  props?: TReferenceProps<IIsHexColorProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
@@ -13,7 +19,7 @@ export const isStringHexColor = (props?: IIsStringHexColorProps): TStringValidat
         test(value) {
           if (!value) return true
 
-          return isHexColor(value)
+          return _isHexColor(value)
         },
         message: intl.formatErrorMessage({
           id: message ?? 'e.field.s_must_be_an_hexcolor_color',

@@ -1,15 +1,21 @@
-import isInt from 'validator/lib/isInt'
+import _isInt from 'validator/lib/isInt'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isInt>
+type TParameters = Parameters<typeof _isInt>
 
-export interface IIsStringInt extends IStringProps {
+export interface IIsIntProps {
   options?: TParameters[1]
 }
 
-export const isStringInt = (props?: IIsStringInt): TStringValidatorResult => {
-  const { options, active = true, message } = props ?? {}
+/**
+ * Check if the string is an integer.
+ */
+export const isInt = (
+  props?: TReferenceProps<IIsIntProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringInt = (props?: IIsStringInt): TStringValidatorResult => {
         test(value) {
           if (!value) return true
 
-          return isInt(value, options)
+          const { options } = parseReference<IIsIntProps>(this, props)
+
+          const result = _isInt(value, options)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_an_int' },
+                  { ...options }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_an_int' },
-          { ...options }
-        ),
       })
     }
 

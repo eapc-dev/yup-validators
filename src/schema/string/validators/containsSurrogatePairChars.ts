@@ -1,11 +1,15 @@
 import isSurrogatePair from 'validator/lib/isSurrogatePair'
 
+import { TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IContainsStringSurrogatePairCharsProps extends IStringProps {}
+export interface IContainsSurrogatePairCharsProps {}
 
-export const containsStringSurrogatePairChars = (
-  props?: IContainsStringSurrogatePairCharsProps
+/**
+ * Check if the string contains any surrogate pairs chars.
+ */
+export const containsSurrogatePairChars = (
+  props?: TReferenceProps<IContainsSurrogatePairCharsProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 

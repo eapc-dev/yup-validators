@@ -1,15 +1,21 @@
-import isVAT from 'validator/lib/isVAT'
+import _isVAT from 'validator/lib/isVAT'
 
+import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof isVAT>
+type TParameters = Parameters<typeof _isVAT>
 
-export interface IIsStringVAT extends IStringProps {
+export interface IIsVATProps {
   countryCode: TParameters[1]
 }
 
-export const isStringVAT = (props: IIsStringVAT): TStringValidatorResult => {
-  const { countryCode, active = true, message } = props ?? {}
+/**
+ * Checks that the string is a valid VAT number.
+ */
+export const isVAT = (
+  props: TReferenceProps<IIsVATProps> & IStringProps
+): TStringValidatorResult => {
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
@@ -17,12 +23,19 @@ export const isStringVAT = (props: IIsStringVAT): TStringValidatorResult => {
         test(value) {
           if (!value) return true
 
-          return isVAT(value, countryCode)
+          const { countryCode } = parseReference<IIsVATProps>(this, props)
+
+          const result = _isVAT(value, countryCode)
+
+          return result
+            ? true
+            : this.createError({
+                message: intl.formatErrorMessage(
+                  { id: message ?? 'e.field.s_must_be_a_vat_number' },
+                  { country_code: countryCode }
+                ),
+              })
         },
-        message: intl.formatErrorMessage(
-          { id: message ?? 'e.field.s_must_be_a_vat_number' },
-          { countryCode }
-        ),
       })
     }
 
