@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+if [[ `git status --porcelain` ]]; then
+  # Don't format
+else
+  npm run format
+
+  git add -A
+  git commit -m "style: format before push"
+fi
