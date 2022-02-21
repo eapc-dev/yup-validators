@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isIdentityCard>
 
 export interface IIsIdentityCardProps {
+  /**
+   * Locale is one of [`LK`, `PL`, `ES`, `FI`, `IN`, `IT`, `IR`, `MZ`, `NO`, `TH`, `zh-TW`, `he-IL`, `ar-LY`, `ar-TN`, `zh-CN`] OR `any`. If `any` is used, function will check if any of the locals match.
+   */
   locale?: TParameters[1]
 }
 

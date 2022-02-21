@@ -6,6 +6,13 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isDecimal>
 
 export interface IIsDecimalProps {
+  /**
+   * Options is an object which defaults to `{ force_decimal: false, decimal_digits: '1,', locale: 'en-US' }`
+
+    Locale determine the decimal separator and is one of [`ar`, `ar-AE`, `ar-BH`, `ar-DZ`, `ar-EG`, `ar-IQ`, `ar-JO`, `ar-KW`, `ar-LB`, `ar-LY`, `ar-MA`, `ar-QA`, `ar-QM`, `ar-SA`, `ar-SD`, `ar-SY`, `ar-TN`, `ar-YE`, `bg-BG`, `cs-CZ`, `da-DK`, `de-DE`, `el-GR`, `en-AU`, `en-GB`, `en-HK`, `en-IN`, `en-NZ`, `en-US`, `en-ZA`, `en-ZM`, `es-ES`, `fa`, `fa-AF`, `fa-IR`, `fr-FR`, `fr-CA`, `hu-HU`, `id-ID`, `it-IT`, `ku-IQ`, `nb-NO`, `nl-NL`, `nn-NO`, `pl-PL`, `pl-Pl`, `pt-BR`, `pt-PT`, `ru-RU`, `sl-SI`, `sr-RS`, `sr-RS@latin`, `sv-SE`, `tr-TR`, `uk-UA`, `vi-VN`].
+    
+    Note: decimal_digits is given as a range like `1,3`, a specific value like `3` or min like `1,`.
+   */
   options?: TParameters[1]
 }
 

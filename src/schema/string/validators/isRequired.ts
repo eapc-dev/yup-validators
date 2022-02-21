@@ -7,7 +7,7 @@ export interface IIsRequiredProps {}
  * Check if the string is not empty.
  */
 export const isRequired = (
-  props?: TReferenceProps<IStringProps> & IStringProps
+  props?: TReferenceProps<IIsRequiredProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 

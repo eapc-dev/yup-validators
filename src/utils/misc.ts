@@ -26,9 +26,7 @@ export const parseReference = <T extends Maybe<object>>(
     if (value instanceof Reference) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       newValue[key] = getValueFromContext(context, value)
-    }
-
-    if (typeof value === 'object' && !Array.isArray(value)) {
+    } else if (typeof value === 'object' && !Array.isArray(value)) {
       // @ts-expect-error
       newValue[key] = parseReference(context, value)
     }

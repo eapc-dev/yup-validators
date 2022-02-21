@@ -6,6 +6,10 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isBase64>
 
 export interface IIsBase64Props {
+  /**
+   * `options` is optional and defaults to `{ urlSafe: false }`.
+     When `urlSafe` is `true` it tests the given base64 encoded string is [url safe](https://base64.guru/standards/base64url).
+   */
   options?: TParameters[1]
 }
 

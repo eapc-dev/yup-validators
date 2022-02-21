@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isIP>
 
 export interface IIsIPProps {
+  /**
+   * IP Version
+   */
   version?: TParameters[1]
 }
 

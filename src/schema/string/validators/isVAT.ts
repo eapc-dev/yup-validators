@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isVAT>
 
 export interface IIsVATProps {
+  /**
+   * Available country codes: [ `GB`, `IT`,`NL` ].
+   */
   countryCode: TParameters[1]
 }
 

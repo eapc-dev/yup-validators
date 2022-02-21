@@ -5,13 +5,16 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 
 type TParameters = Parameters<typeof _isEmpty>
 
-/**
- * Check if the string has a length of zero.
- */
 export interface IIsEmptyProps {
+  /**
+   * Options is an object which defaults to `{ ignore_whitespace:false }`.
+   */
   options?: TParameters[1]
 }
 
+/**
+ * Check if the string has a length of zero.
+ */
 export const isEmpty = (
   props?: TReferenceProps<IIsEmptyProps> & IStringProps
 ): TStringValidatorResult => {

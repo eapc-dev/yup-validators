@@ -1,30 +1,30 @@
-import { DEFAULT_INTL, string } from '../../index'
+import { i18n, string } from '../../index'
 
 describe('String validation', () => {
   it('isRequired', () => {
-    expect(string.schema(DEFAULT_INTL, string.isRequired()).isValidSync('Coucou')).toBe(true)
+    expect(string.schema(i18n.DEFAULT_INTL, string.isRequired()).isValidSync('Coucou')).toBe(true)
 
     expect(
-      string.schema(DEFAULT_INTL, string.isRequired({ active: false })).isValidSync('Coucou')
+      string.schema(i18n.DEFAULT_INTL, string.isRequired({ active: false })).isValidSync('Coucou')
     ).toBe(true)
 
-    expect(string.schema(DEFAULT_INTL, string.isRequired()).isValidSync(undefined)).toBe(false)
+    expect(string.schema(i18n.DEFAULT_INTL, string.isRequired()).isValidSync(undefined)).toBe(false)
 
     expect(
-      string.schema(DEFAULT_INTL, string.isRequired({ active: false })).isValidSync(undefined)
+      string.schema(i18n.DEFAULT_INTL, string.isRequired({ active: false })).isValidSync(undefined)
     ).toBe(true)
   })
 
   it('isAlphanumeric', () => {
     expect(
       string
-        .schema(DEFAULT_INTL, string.isRequired(), string.isAlphanumeric())
+        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isAlphanumeric())
         .isValidSync('abc123')
     ).toBe(true)
 
     expect(
       string
-        .schema(DEFAULT_INTL, string.isRequired(), string.isAlphanumeric())
+        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isAlphanumeric())
         .isValidSync('abc123!')
     ).toBe(false)
   })
@@ -32,32 +32,34 @@ describe('String validation', () => {
   it('isEmail', () => {
     expect(
       string
-        .schema(DEFAULT_INTL, string.isRequired(), string.isEmail())
+        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
         .isValidSync('coucou@eapc.be')
     ).toBe(true)
 
     expect(
       string
-        .schema(DEFAULT_INTL, string.isRequired(), string.isEmail())
+        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
         .isValidSync('COUCOU@TEST.EAPC.BE')
     ).toBe(true)
 
     expect(
       string
-        .schema(DEFAULT_INTL, string.isRequired(), string.isEmail())
+        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
         .isValidSync('coucou@eapc.b')
     ).toBe(false)
 
     expect(
-      string.schema(DEFAULT_INTL, string.isRequired(), string.isEmail()).isValidSync('coucou@eapc')
+      string
+        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
+        .isValidSync('coucou@eapc')
     ).toBe(false)
 
     expect(
-      string.schema(DEFAULT_INTL, string.isRequired(), string.isEmail()).isValidSync('coucou')
+      string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail()).isValidSync('coucou')
     ).toBe(false)
 
     expect(
-      string.schema(DEFAULT_INTL, string.isRequired(), string.isEmail()).isValidSync('coucou')
+      string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail()).isValidSync('coucou')
     ).toBe(false)
   })
 })

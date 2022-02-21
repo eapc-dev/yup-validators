@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isPassportNumber>
 
 export interface IIsPassportNumberProps {
+  /**
+   * CountryCode is one of [ `AM`, `AR`, `AT`, `AU`, `BE`, `BG`, `BY`, `BR`, `CA`, `CH`, `CN`, `CY`, `CZ`, `DE`, `DK`, `DZ`, `EE`, `ES`, `FI`, `FR`, `GB`, `GR`, `HR`, `HU`, `IE` `IN`, `IR`, `ID`, `IS`, `IT`, `JP`, `KR`, `LT`, `LU`, `LV`, `LY`, `MT`, `MY`, `MZ`, `NL`, `PL`, `PT`, `RO`, `RU`, `SE`, `SL`, `SK`, `TR`, `UA`, `US` ]
+   */
   countryCode?: TParameters[1]
 }
 

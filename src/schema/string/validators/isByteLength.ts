@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isByteLength>
 
 export interface IIsByteLengthProps {
+  /**
+   * `options` is an object which defaults to `{ min:0, max: undefined }`.
+   */
   options?: TParameters[1]
 }
 

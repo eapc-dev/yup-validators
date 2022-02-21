@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isISSN>
 
 export interface IIsISSNProps {
+  /**
+   * Options is an object which defaults to `{ case_sensitive: false, require_hyphen: false }`. If `case_sensitive` is `true`, ISSNs with a lowercase 'x' as the check digit are rejected.
+   */
   options?: TParameters[1]
 }
 

@@ -6,6 +6,15 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isDate>
 
 export interface IIsDateProps {
+  /**
+   * Options is an object which can contain the keys `format`, `strictMode` and/or `delimiters`
+
+     `format` is a string and defaults to `YYYY/MM/DD`.
+
+     `strictMode` is a boolean and defaults to `false`. If `strictMode` is set to `true`, the validator will reject inputs different from format.
+
+     `delimiters` is an array of allowed date delimiters and defaults to `['/', '-']`.
+   */
   options?: TParameters[1]
 }
 

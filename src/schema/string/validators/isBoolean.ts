@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isBoolean>
 
 export interface IIsBooleanProps {
+  /**
+   * `options` is an object which defaults to `{ loose: false }`. If `loose` is is set to `false`, the validator will strictly match `['true', 'false', '0', '1']`. If `loose` is set to `true`, the validator will also match 'yes', 'no', and will match a valid boolean string of any case. (eg: `['true', 'True', 'TRUE']`).
+   */
   options?: TParameters[1]
 }
 

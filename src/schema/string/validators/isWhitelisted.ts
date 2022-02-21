@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isWhitelisted>
 
 export interface IIsWhitelistedProps {
+  /**
+   * Whitelist, can be either a string or an array of strings.
+   */
   chars: TParameters[1]
 }
 

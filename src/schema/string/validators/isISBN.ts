@@ -6,6 +6,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 type TParameters = Parameters<typeof _isISBN>
 
 export interface IIsISBNProps {
+  /**
+   * ISBN Version
+   */
   version?: TParameters[1]
 }
 
