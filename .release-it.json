@@ -1,6 +1,18 @@
 {
+  "hooks": {
+    "before:init": ["yarn lint", "yarn test"],
+    "after:bump": "yarn build"
+  },
   "github": {
-    "release": true
+    "release": true,
+    "releaseName": "Release v${version}",
+    "commit": true,
+    "commitMessage": "chore: release v${version}",
+    "commitArgs": [],
+    "tag": true,
+    "tagName": null,
+    "tagAnnotation": "Release v${version}",
+    "tagArgs": []
   },
   "npm": {
     "publish": true

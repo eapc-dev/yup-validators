@@ -6,6 +6,7 @@
   },
   "version": "0.0.0",
   "main": "dist/index.js",
+  "license": "MIT",
   "scripts": {
     "test": "jest src",
     "test:watch": "jest src --watchAll",
@@ -18,6 +19,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jordanmonier/yup-validators"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "bugs": {
     "url": "https://github.com/jordanmonier/yup-validators/issues",
