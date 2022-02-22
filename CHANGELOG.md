@@ -1,3 +1,10 @@
+### [0.2.1](https://github.com/jordanmonier/yup-validators/compare/0.2.0...0.2.1) (2022-02-22)
+
+
+### Bug Fixes
+
+* disabled sideEffects ([dfa166d](https://github.com/jordanmonier/yup-validators/commit/dfa166d81ae7c08b4f72d73b1e71641e099c25d5))
+
 ## [0.2.0](https://github.com/jordanmonier/yup-validators/compare/0.1.0...0.2.0) (2022-02-22)
 
 
