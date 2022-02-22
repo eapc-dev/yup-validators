@@ -1,14 +1,14 @@
 import { TReferenceProps } from '../../..'
-import { IStringProps, TStringValidatorResult } from '../_types'
+import { IDateProps, TDateValidatorResult } from '../_types'
 
 export interface IIsOptionalProps {}
 
 /**
- * Allow a `string` to be `undefined`.
+ * Allow a `Date` to be `undefined`.
  */
 export const isOptional = (
-  props?: TReferenceProps<IIsOptionalProps> & Omit<IStringProps, 'message'>
-): TStringValidatorResult => {
+  props?: TReferenceProps<IIsOptionalProps> & Omit<IDateProps, 'message'>
+): TDateValidatorResult => {
   const { active = true } = props ?? {}
 
   return (schema, intl) => {

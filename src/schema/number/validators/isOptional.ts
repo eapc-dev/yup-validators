@@ -1,14 +1,14 @@
 import { TReferenceProps } from '../../..'
-import { IStringProps, TStringValidatorResult } from '../_types'
+import { INumberProps, TNumberValidatorResult } from '../_types'
 
 export interface IIsOptionalProps {}
 
 /**
- * Allow a `string` to be `undefined`.
+ * Allow a `number` to be `undefined`.
  */
 export const isOptional = (
-  props?: TReferenceProps<IIsOptionalProps> & Omit<IStringProps, 'message'>
-): TStringValidatorResult => {
+  props?: TReferenceProps<IIsOptionalProps> & Omit<INumberProps, 'message'>
+): TNumberValidatorResult => {
   const { active = true } = props ?? {}
 
   return (schema, intl) => {

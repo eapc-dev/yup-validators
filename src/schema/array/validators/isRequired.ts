@@ -1,24 +1,23 @@
 import * as yup from 'yup'
-import { ObjectShape } from 'yup/lib/object'
 
 import { TReferenceProps } from '../../..'
-import { IObjectProps, TObjectValidatorResult } from '../_types'
+import { IArrayProps, TArrayValidatorResult } from '../_types'
 
 export interface IIsRequiredProps {}
 
 /**
- * Check if the `object` is defined.
+ * Check if the `array` is defined.
  */
-export const isRequired = <T extends ObjectShape = {}>(
-  props?: TReferenceProps<IIsRequiredProps> & IObjectProps
-): TObjectValidatorResult<T> => {
+export const isRequired = <T extends yup.AnySchema>(
+  props?: TReferenceProps<IIsRequiredProps> & IArrayProps
+): TArrayValidatorResult<T> => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
       schema = schema.required(
         intl.formatErrorMessage({ id: message ?? 'e.field.is_required' })
-      ) as yup.ObjectSchema<T>
+      ) as yup.ArraySchema<T>
     }
 
     return schema

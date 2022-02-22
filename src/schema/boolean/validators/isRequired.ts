@@ -1,14 +1,14 @@
 import { TReferenceProps } from '../../..'
-import { IStringProps, TStringValidatorResult } from '../_types'
+import { IBooleanProps, TBooleanValidatorResult } from '../_types'
 
 export interface IIsRequiredProps {}
 
 /**
- * Check if the `string` is defined. Will also reject `''`.
+ * Check if the `boolean` is defined.
  */
 export const isRequired = (
-  props?: TReferenceProps<IIsRequiredProps> & IStringProps
-): TStringValidatorResult => {
+  props?: TReferenceProps<IIsRequiredProps> & IBooleanProps
+): TBooleanValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {

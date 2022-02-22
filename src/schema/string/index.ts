@@ -14,6 +14,8 @@ export const schema = (
     value = validator(value, intl)
   }
 
+  value.typeError(intl.formatErrorMessage({ id: 'e.form.s_type_error' }))
+
   return value
 }
 
@@ -77,6 +79,7 @@ export * from './validators/isMD5'
 export * from './validators/isMimeType'
 export * from './validators/isMobilePhone'
 export * from './validators/isMongoId'
+export * from './validators/isNullable'
 export * from './validators/isNumeric'
 export * from './validators/isOctal'
 export * from './validators/isOptional'

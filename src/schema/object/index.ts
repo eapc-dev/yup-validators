@@ -16,9 +16,13 @@ export const schema = <T extends ObjectShape = {}>(
     value = validator(value, intl)
   }
 
+  value.typeError(intl.formatErrorMessage({ id: 'e.form.o_type_error' }))
+
   return value
 }
 
 export * from './_types'
 
+export * from './validators/isNullable'
 export * from './validators/isRequired'
+export * from './validators/isOptional'

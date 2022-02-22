@@ -1,14 +1,14 @@
 import { TReferenceProps } from '../../..'
-import { IStringProps, TStringValidatorResult } from '../_types'
+import { IBooleanProps, TBooleanValidatorResult } from '../_types'
 
 export interface IIsOptionalProps {}
 
 /**
- * Allow a `string` to be `undefined`.
+ * Allow a `boolean` to be `undefined`.
  */
 export const isOptional = (
-  props?: TReferenceProps<IIsOptionalProps> & Omit<IStringProps, 'message'>
-): TStringValidatorResult => {
+  props?: TReferenceProps<IIsOptionalProps> & Omit<IBooleanProps, 'message'>
+): TBooleanValidatorResult => {
   const { active = true } = props ?? {}
 
   return (schema, intl) => {
