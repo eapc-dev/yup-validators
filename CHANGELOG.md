@@ -1,3 +1,10 @@
+## [0.3.0](https://github.com/jordanmonier/yup-validators/compare/0.2.1...0.3.0) (2022-02-22)
+
+
+### Features
+
+* added base schema for array, boolean, date and number ([98c3bbb](https://github.com/jordanmonier/yup-validators/commit/98c3bbbe9aa1137eb6a345682f0e497518b623c1))
+
 ### [0.2.1](https://github.com/jordanmonier/yup-validators/compare/0.2.0...0.2.1) (2022-02-22)
 
 
