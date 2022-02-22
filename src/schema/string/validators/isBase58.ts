@@ -17,7 +17,7 @@ export const isBase58 = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           return _isBase58(value)
         },

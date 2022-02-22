@@ -30,7 +30,7 @@ export const isDate = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { options } = parseReference<IIsDateProps>(this, props)
 
@@ -44,7 +44,7 @@ export const isDate = (
                   {
                     ...options,
                     delimiters: options?.delimiters?.join(
-                      intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                      intl.formatErrorMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
                     ),
                   }
                 ),

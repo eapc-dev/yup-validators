@@ -17,7 +17,7 @@ export const isISO8601 = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           return _isISO8601(value)
         },

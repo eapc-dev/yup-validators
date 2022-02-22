@@ -30,7 +30,7 @@ export interface IIsLengthProps {
    *
    * @default true
    */
-  maxIncluded?: number
+  maxIncluded?: boolean
 }
 
 /**
@@ -39,13 +39,13 @@ export interface IIsLengthProps {
 export const isLength = (
   props?: TReferenceProps<IIsLengthProps> & IStringProps
 ): TStringValidatorResult => {
-  const { active = true } = props ?? {}
+  const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { length } = value
 
@@ -79,7 +79,7 @@ export const isLength = (
             if (!minValid || !maxValid) {
               return this.createError({
                 message: intl.formatErrorMessage(
-                  { id: 'e.form.s_min_max_length' },
+                  { id: message ?? 'e.form.s_min_max_length' },
                   {
                     min,
                     min_delta: minDelta,
@@ -95,7 +95,7 @@ export const isLength = (
             if (!minValid) {
               return this.createError({
                 message: intl.formatErrorMessage(
-                  { id: 'e.form.s_min_length' },
+                  { id: message ?? 'e.form.s_min_length' },
                   {
                     min,
                     min_delta: minDelta,
@@ -107,7 +107,7 @@ export const isLength = (
           } else if (!maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: 'e.form.s_max_length' },
+                { id: message ?? 'e.form.s_max_length' },
                 {
                   max,
                   max_delta: maxDelta,

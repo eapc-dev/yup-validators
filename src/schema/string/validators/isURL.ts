@@ -21,7 +21,7 @@ export const isURL = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { options } = parseReference<IIsURLProps>(this, props)
 
@@ -38,12 +38,18 @@ export const isURL = (
                     host_whitelist: options?.host_whitelist
                       ?.map((e) => e.toString())
                       .join(
-                        intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                        intl.formatErrorMessage({
+                          id: 'lang.array_separator',
+                          defaultMessage: ', ',
+                        })
                       ),
                     host_blacklist: options?.host_blacklist
                       ?.map((e) => e.toString())
                       .join(
-                        intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                        intl.formatErrorMessage({
+                          id: 'lang.array_separator',
+                          defaultMessage: ', ',
+                        })
                       ),
                   }
                 ),

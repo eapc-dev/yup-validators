@@ -24,7 +24,7 @@ export const isEmail = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { options } = parseReference<IIsEmailProps>(this, props)
 
@@ -38,7 +38,7 @@ export const isEmail = (
                   {
                     ...options,
                     host_blacklist: options?.host_blacklist?.join(
-                      intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                      intl.formatErrorMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
                     ),
                   }
                 ),

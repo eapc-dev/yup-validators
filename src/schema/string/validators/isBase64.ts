@@ -25,7 +25,7 @@ export const isBase64 = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { options } = parseReference<IIsBase64Props>(this, props)
 

@@ -1,135 +1,165 @@
 import { i18n, string } from '../../index'
 
+const SCHEMAS: [
+  name: string,
+  schema: ReturnType<typeof string['schema']>,
+  valid: unknown[],
+  invalid: unknown[]
+][] = [
+  [
+    'isRequired',
+    string.schema(i18n.DEFAULT_INTL, string.isRequired()),
+    ['Coucou', 'ç', 'ça va'],
+    [undefined, null, ''],
+  ],
+  [
+    '!isRequired',
+    string.schema(i18n.DEFAULT_INTL, string.isRequired({ active: false })),
+    ['Coucou', 'ç', 'ça va', '', undefined, ''],
+    [null],
+  ],
+  [
+    'isLength',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.isLength({
+        min: 6,
+        max: 12,
+      })
+    ),
+    ['123456', '123456789012'],
+    ['12345', '1234567890123'],
+  ],
+  [
+    'isLength (min & max not included)',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.isLength({
+        min: 6,
+        minIncluded: false,
+        max: 12,
+        maxIncluded: false,
+      })
+    ),
+    ['1234567', 'abcdefghijk'],
+    ['123456', 'abcdefghijkl'],
+  ],
+  [
+    'isLength (min & max delta)',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.isLength({
+        min: 6,
+        minDelta: -1,
+        max: 12,
+        maxDelta: 1,
+      })
+    ),
+    ['12345', '1234567890123'],
+    ['1234', '12345678901234'],
+  ],
+  [
+    'doesEqual',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.doesEqual({
+        values: ['12', '14'],
+      })
+    ),
+    ['12', '14'],
+    ['13', ''],
+  ],
+  [
+    'doesNotEqual',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.doesNotEqual({
+        values: ['12', '14'],
+      })
+    ),
+    ['13'],
+    ['12', '14', ''],
+  ],
+  [
+    'doesContain',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.doesContain({
+        values: ['12', '14', /[A-z]{2}$/],
+      })
+    ),
+    ['12', '14', '122', '_1412', 'ab'],
+    ['13', ''],
+  ],
+  [
+    'doesContain (matchAll)',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.doesContain({
+        values: ['12', '14', /[A-z]{2}$/],
+        matchAll: true,
+      })
+    ),
+    ['1412ba', '1214___ab'],
+    ['12', '14'],
+  ],
+  [
+    'doesNotContain',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.doesNotContain({
+        values: ['12', '14'],
+      })
+    ),
+    ['13', '15'],
+    ['12', '14', '122', '_1412'],
+  ],
+  [
+    'doesNotContain (do not matchAll)',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.doesNotContain({
+        values: ['12', '14', /[A-z]{2}$/],
+        matchAll: false,
+      })
+    ),
+    ['12', '14', '13', 'ab'],
+    ['1412ba', '1214___ab'],
+  ],
+  [
+    'isAlphanumeric',
+    string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isAlphanumeric()),
+    ['13', 'abc123'],
+    ['&', 'abc123)', 'é'],
+  ],
+  [
+    'isEmail',
+    string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail()),
+    ['coucou@eapc.be', 'coucou+jordan@eapc.be'],
+    ['coucou@', 'coucou@eapc.b', 'coucou+jordan))@eapc.be'],
+  ],
+]
+
 describe('String validation', () => {
-  it('isRequired', () => {
-    expect(string.schema(i18n.DEFAULT_INTL, string.isRequired()).isValidSync('Coucou')).toBe(true)
+  for (const [name, schema, valid, invalid] of SCHEMAS) {
+    // eslint-disable-next-line jest/valid-title
+    it(name, () => {
+      for (const value of valid) {
+        expect(schema.isValidSync(value)).toBe(true)
+      }
 
-    expect(
-      string.schema(i18n.DEFAULT_INTL, string.isRequired({ active: false })).isValidSync('Coucou')
-    ).toBe(true)
-
-    expect(string.schema(i18n.DEFAULT_INTL, string.isRequired()).isValidSync(undefined)).toBe(false)
-
-    expect(
-      string.schema(i18n.DEFAULT_INTL, string.isRequired({ active: false })).isValidSync(undefined)
-    ).toBe(true)
-  })
-
-  it('isLength', () => {
-    expect(
-      string
-        .schema(
-          i18n.DEFAULT_INTL,
-          string.isRequired(),
-          string.isLength({
-            min: 6,
-            max: 12,
-          })
-        )
-        .isValidSync('123456')
-    ).toBe(true)
-
-    expect(
-      string
-        .schema(
-          i18n.DEFAULT_INTL,
-          string.isRequired(),
-          string.isLength({
-            min: 6,
-            max: 12,
-          })
-        )
-        .isValidSync('12345')
-    ).toBe(false)
-
-    expect(
-      string
-        .schema(
-          i18n.DEFAULT_INTL,
-          string.isRequired(),
-          string.isLength({
-            min: 6,
-            minIncluded: false,
-            max: 12,
-          })
-        )
-        .isValidSync('123456')
-    ).toBe(false)
-
-    expect(
-      string
-        .schema(
-          i18n.DEFAULT_INTL,
-          string.isRequired(),
-          string.isLength({
-            min: 6,
-            minIncluded: false,
-            max: 12,
-          })
-        )
-        .isValidSync('1234567')
-    ).toBe(true)
-
-    expect(
-      string
-        .schema(
-          i18n.DEFAULT_INTL,
-          string.isRequired(),
-          string.isLength({
-            min: 6,
-            minDelta: 1,
-            max: 12,
-          })
-        )
-        .isValidSync('1234567')
-    ).toBe(true)
-  })
-
-  it('isAlphanumeric', () => {
-    expect(
-      string
-        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isAlphanumeric())
-        .isValidSync('abc123')
-    ).toBe(true)
-
-    expect(
-      string
-        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isAlphanumeric())
-        .isValidSync('abc123!')
-    ).toBe(false)
-  })
-
-  it('isEmail', () => {
-    expect(
-      string
-        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
-        .isValidSync('coucou@eapc.be')
-    ).toBe(true)
-
-    expect(
-      string
-        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
-        .isValidSync('COUCOU@TEST.EAPC.BE')
-    ).toBe(true)
-
-    expect(
-      string
-        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
-        .isValidSync('coucou@eapc.b')
-    ).toBe(false)
-
-    expect(
-      string
-        .schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail())
-        .isValidSync('coucou@eapc')
-    ).toBe(false)
-
-    expect(
-      string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail()).isValidSync('coucou')
-    ).toBe(false)
-
-    expect(
-      string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail()).isValidSync('coucou')
-    ).toBe(false)
-  })
+      for (const value of invalid) {
+        expect(schema.isValidSync(value)).toBe(false)
+      }
+    })
+  }
 })

@@ -9,11 +9,39 @@ import { TFormatMessage } from '../i18n/placeholder'
 
 export type TMessage = string | Parameters<TFormatMessage>
 
-export const getValueFromContext = <T>(
+export const getValueFromContext = <T>(context: yup.TestContext, ref: Reference<T>): Maybe<T> => {
+  return context.resolve(ref)
+}
+
+export const parseValue = <T>(
   context: yup.TestContext,
-  ref: Reference<T> | Maybe<T>
+  value: Reference<T> | Maybe<T>
 ): Maybe<T> => {
-  return ref instanceof Reference ? context.resolve(ref) : ref
+  if (value instanceof Reference) {
+    return getValueFromContext(context, value)
+  }
+
+  if (
+    typeof value === 'string' ||
+    typeof value === 'bigint' ||
+    typeof value === 'boolean' ||
+    typeof value === 'number' ||
+    typeof value === 'undefined' ||
+    value === null ||
+    value instanceof RegExp
+  ) {
+    return value
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((e) => parseValue<T>(context, e)) as unknown as T
+  }
+
+  if (typeof value === 'object') {
+    return parseReference(context, value as unknown as object) as unknown as T
+  }
+
+  return value
 }
 
 export const parseReference = <T extends Maybe<object>>(
@@ -25,13 +53,8 @@ export const parseReference = <T extends Maybe<object>>(
   for (const key in props) {
     const value = props[key]
 
-    if (value instanceof Reference) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      newValue[key] = getValueFromContext(context, value)
-    } else if (typeof value === 'object' && !Array.isArray(value)) {
-      // @ts-expect-error
-      newValue[key] = parseReference(context, value)
-    }
+    // @ts-expect-error
+    newValue[key] = parseValue(context, value)
   }
 
   return { ...(props as T), ...newValue }

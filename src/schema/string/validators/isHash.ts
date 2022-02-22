@@ -24,7 +24,7 @@ export const isHash = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { algorithm } = parseReference<IIsHashProps>(this, props)
 

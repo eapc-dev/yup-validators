@@ -26,7 +26,7 @@ export const isCurrency = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { options } = parseReference<IIsCurrencyProps>(this, props)
 
@@ -40,7 +40,7 @@ export const isCurrency = (
                   {
                     ...options,
                     digits_after_decimal: options?.digits_after_decimal?.join(
-                      intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                      intl.formatErrorMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
                     ),
                   }
                 ),

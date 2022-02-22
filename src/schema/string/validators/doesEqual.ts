@@ -1,22 +1,18 @@
-import _isWhitelisted from 'validator/lib/isWhitelisted'
-
 import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-type TParameters = Parameters<typeof _isWhitelisted>
-
-export interface IIsWhitelistedProps {
+export interface IDoesEqualProps {
   /**
-   * Whitelist, can be either a string or an array of strings.
+   * The list of authorized values. Can be either an array of string or just a string.
    */
-  chars: TParameters[1]
+  values: string | string[]
 }
 
 /**
- * Checks characters if they appear in the whitelist.
+ * Check if the string does equal to a list of values.
  */
-export const isWhitelisted = (
-  props: TReferenceProps<IIsWhitelistedProps> & IStringProps
+export const doesEqual = (
+  props: TReferenceProps<IDoesEqualProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
@@ -26,24 +22,33 @@ export const isWhitelisted = (
         test(value) {
           if (typeof value !== 'string') return true
 
-          const { chars } = parseReference<IIsWhitelistedProps>(this, props)
+          const { values } = parseReference<IDoesEqualProps>(this, props)
 
-          const result = _isWhitelisted(value, chars)
+          const whitelist = new Set<string>()
+          if (typeof values === 'string') {
+            whitelist.add(values)
+          } else {
+            for (const v of values) {
+              whitelist.add(v)
+            }
+          }
+
+          const result = whitelist.has(value)
 
           return result
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_whitelisted' },
+                  { id: message ?? 'e.field.s_equal' },
                   {
-                    chars: Array.isArray(chars)
-                      ? chars.join(
+                    values: Array.isArray(values)
+                      ? values.join(
                           intl.formatErrorMessage({
                             id: 'lang.array_separator',
                             defaultMessage: ', ',
                           })
                         )
-                      : chars,
+                      : values,
                   }
                 ),
               })

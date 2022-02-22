@@ -29,7 +29,7 @@ export const isMobilePhone = (
     if (active) {
       schema = schema.test({
         test(value) {
-          if (!value) return true
+          if (typeof value !== 'string') return true
 
           const { locale, options } = parseReference<IIsMobilePhoneProps>(this, props)
 
@@ -43,7 +43,10 @@ export const isMobilePhone = (
                   {
                     locale: Array.isArray(locale)
                       ? locale.join(
-                          intl.formatMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
+                          intl.formatErrorMessage({
+                            id: 'lang.array_separator',
+                            defaultMessage: ', ',
+                          })
                         )
                       : locale,
                     ...options,
