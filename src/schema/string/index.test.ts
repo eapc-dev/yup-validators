@@ -143,7 +143,12 @@ const SCHEMAS: [
   ],
   [
     'isEmail',
-    string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail()),
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.isEmail(),
+      string.normalizeEmail()
+    ),
     ['coucou@eapc.be', 'coucou+jordan@eapc.be'],
     ['coucou@', 'coucou@eapc.b', 'coucou+jordan))@eapc.be'],
   ],
