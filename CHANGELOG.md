@@ -1,3 +1,10 @@
+## [0.2.0](https://github.com/jordanmonier/yup-validators/compare/0.1.0...0.2.0) (2022-02-22)
+
+
+### Features
+
+* added webpack compilation ([22113c7](https://github.com/jordanmonier/yup-validators/commit/22113c7066729a7cdc6e01c99e3b3f639c1b614f))
+
 ## 0.1.0 (2022-02-22)
 
 
