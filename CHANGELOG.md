@@ -1,3 +1,20 @@
+## [1.0.0](https://github.com/eapc-dev/yup-validators/compare/0.4.0...1.0.0) (2022-02-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* changed doesEqual to isEqualTo and doesNotEqual to isDifferentThan
+
+### Features
+
+* added doesEqual and doesNotEqual validator for boolean ([ebd2029](https://github.com/eapc-dev/yup-validators/commit/ebd20294f0881a522b978a7373c9dc514cc8ad8e))
+* added isFalse, isTrue validators for boolean ([75c00c3](https://github.com/eapc-dev/yup-validators/commit/75c00c38be5994e6d8f0242908b6b9232efb3736))
+
+
+### Bug Fixes
+
+* changed doesEqual to isEqualTo and doesNotEqual to isDifferentThan ([d293cd7](https://github.com/eapc-dev/yup-validators/commit/d293cd72d4dcb6e785b251fde998f81514f7b5ab))
+
 ## [0.4.0](https://github.com/eapc-dev/yup-validators/compare/0.3.0...0.4.0) (2022-02-23)
 
 
