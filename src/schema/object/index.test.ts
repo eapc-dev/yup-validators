@@ -60,14 +60,14 @@ const SCHEMAS: [
     ],
   ],
   [
-    '2 fields with ref (doesEqual)',
+    '2 fields with ref (isEqualTo)',
     object.schema(
       {
         whitelist: string.schema(i18n.DEFAULT_INTL, string.isRequired()),
         value: string.schema(
           i18n.DEFAULT_INTL,
           string.isRequired(),
-          string.doesEqual({
+          string.isEqualTo({
             values: yup.ref('whitelist'),
           })
         ),

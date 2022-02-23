@@ -1,31 +1,31 @@
 import { parseReference, TReferenceProps } from '../../..'
-import { IBooleanProps, TBooleanValidatorResult } from '../_types'
+import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IDoesEqualProps {
+export interface IIsDifferentThanProps {
   /**
-   * The list of authorized values. Can be either an array of boolean or just a boolean.
+   * The list of blacklisted values. Can be either an array of string or just a string.
    */
-  values: boolean | boolean[]
+  values: string | string[]
 }
 
 /**
- * Check if the boolean does equal to a list of values.
+ * Check if the string is different than a list of values.
  */
-export const doesEqual = (
-  props: TReferenceProps<IDoesEqualProps> & IBooleanProps
-): TBooleanValidatorResult => {
+export const isDifferentThan = (
+  props: TReferenceProps<IIsDifferentThanProps> & IStringProps
+): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
         test(value) {
-          if (typeof value !== 'boolean') return true
+          if (typeof value !== 'string') return true
 
-          const { values } = parseReference<IDoesEqualProps>(this, props)
+          const { values } = parseReference<IIsDifferentThanProps>(this, props)
 
-          const whitelist = new Set<boolean>()
-          if (typeof values === 'boolean') {
+          const whitelist = new Set<string>()
+          if (typeof values === 'string') {
             whitelist.add(values)
           } else {
             for (const v of values) {
@@ -33,13 +33,13 @@ export const doesEqual = (
             }
           }
 
-          const result = whitelist.has(value)
+          const result = !whitelist.has(value)
 
           return result
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.b_equal' },
+                  { id: message ?? 'e.field.s_is_different_than' },
                   {
                     values: Array.isArray(values)
                       ? values.join(

@@ -31,11 +31,11 @@ const SCHEMAS: [
     [1, true, undefined, null],
   ],
   [
-    'doesEqual',
+    'isEqualTo',
     boolean.schema(
       i18n.DEFAULT_INTL,
       boolean.isRequired(),
-      boolean.doesEqual({
+      boolean.isEqualTo({
         values: false,
       })
     ),
@@ -43,11 +43,11 @@ const SCHEMAS: [
     [1, true, undefined, null],
   ],
   [
-    'doesNotEqual',
+    'isDifferentThan',
     boolean.schema(
       i18n.DEFAULT_INTL,
       boolean.isRequired(),
-      boolean.doesNotEqual({
+      boolean.isDifferentThan({
         values: false,
       })
     ),

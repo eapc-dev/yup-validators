@@ -1,7 +1,7 @@
 import { parseReference, TReferenceProps } from '../../..'
 import { IBooleanProps, TBooleanValidatorResult } from '../_types'
 
-export interface IDoesNotEqualProps {
+export interface IIsDifferentThanProps {
   /**
    * The list of blacklisted values. Can be either an array of boolean or just a boolean.
    */
@@ -9,10 +9,10 @@ export interface IDoesNotEqualProps {
 }
 
 /**
- * Check if the boolean does not equal to a list of values.
+ * Check if the boolean is different than a list of values.
  */
-export const doesNotEqual = (
-  props: TReferenceProps<IDoesNotEqualProps> & IBooleanProps
+export const isDifferentThan = (
+  props: TReferenceProps<IIsDifferentThanProps> & IBooleanProps
 ): TBooleanValidatorResult => {
   const { active = true, message } = props ?? {}
 
@@ -22,7 +22,7 @@ export const doesNotEqual = (
         test(value) {
           if (typeof value !== 'boolean') return true
 
-          const { values } = parseReference<IDoesNotEqualProps>(this, props)
+          const { values } = parseReference<IIsDifferentThanProps>(this, props)
 
           const whitelist = new Set<boolean>()
           if (typeof values === 'boolean') {
@@ -39,7 +39,7 @@ export const doesNotEqual = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.b_not_equal' },
+                  { id: message ?? 'e.field.b_is_different_than' },
                   {
                     values: Array.isArray(values)
                       ? values.join(

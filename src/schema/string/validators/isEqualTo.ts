@@ -1,18 +1,18 @@
 import { parseReference, TReferenceProps } from '../../..'
 import { IStringProps, TStringValidatorResult } from '../_types'
 
-export interface IDoesNotEqualProps {
+export interface IIsEqualToProps {
   /**
-   * The list of blacklisted values. Can be either an array of string or just a string.
+   * The list of authorized values. Can be either an array of string or just a string.
    */
   values: string | string[]
 }
 
 /**
- * Check if the string does not equal to a list of values.
+ * Check if the string is equal to a list of values.
  */
-export const doesNotEqual = (
-  props: TReferenceProps<IDoesNotEqualProps> & IStringProps
+export const isEqualTo = (
+  props: TReferenceProps<IIsEqualToProps> & IStringProps
 ): TStringValidatorResult => {
   const { active = true, message } = props ?? {}
 
@@ -22,7 +22,7 @@ export const doesNotEqual = (
         test(value) {
           if (typeof value !== 'string') return true
 
-          const { values } = parseReference<IDoesNotEqualProps>(this, props)
+          const { values } = parseReference<IIsEqualToProps>(this, props)
 
           const whitelist = new Set<string>()
           if (typeof values === 'string') {
@@ -33,13 +33,13 @@ export const doesNotEqual = (
             }
           }
 
-          const result = !whitelist.has(value)
+          const result = whitelist.has(value)
 
           return result
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_not_equal' },
+                  { id: message ?? 'e.field.s_is_equal_to' },
                   {
                     values: Array.isArray(values)
                       ? values.join(

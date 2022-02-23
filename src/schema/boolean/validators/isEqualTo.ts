@@ -1,31 +1,31 @@
 import { parseReference, TReferenceProps } from '../../..'
-import { IStringProps, TStringValidatorResult } from '../_types'
+import { IBooleanProps, TBooleanValidatorResult } from '../_types'
 
-export interface IDoesEqualProps {
+export interface IIsEqualToProps {
   /**
-   * The list of authorized values. Can be either an array of string or just a string.
+   * The list of authorized values. Can be either an array of boolean or just a boolean.
    */
-  values: string | string[]
+  values: boolean | boolean[]
 }
 
 /**
- * Check if the string does equal to a list of values.
+ * Check if the boolean is equal to a list of values.
  */
-export const doesEqual = (
-  props: TReferenceProps<IDoesEqualProps> & IStringProps
-): TStringValidatorResult => {
+export const isEqualTo = (
+  props: TReferenceProps<IIsEqualToProps> & IBooleanProps
+): TBooleanValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
         test(value) {
-          if (typeof value !== 'string') return true
+          if (typeof value !== 'boolean') return true
 
-          const { values } = parseReference<IDoesEqualProps>(this, props)
+          const { values } = parseReference<IIsEqualToProps>(this, props)
 
-          const whitelist = new Set<string>()
-          if (typeof values === 'string') {
+          const whitelist = new Set<boolean>()
+          if (typeof values === 'boolean') {
             whitelist.add(values)
           } else {
             for (const v of values) {
@@ -39,7 +39,7 @@ export const doesEqual = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_equal' },
+                  { id: message ?? 'e.field.b_is_equal_to' },
                   {
                     values: Array.isArray(values)
                       ? values.join(

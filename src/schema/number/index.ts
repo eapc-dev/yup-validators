@@ -21,7 +21,18 @@ export const schema = (
 
 export * from './_types'
 
+// export * from './validators/isEqual'
+// export * from './validators/isDifferentThan'
+// export * from './validators/isPositive'
+// export * from './validators/isNegative'
+// export * from './validators/isInteger'
+// export * from './validators/isMod'
 export * from './validators/isMinMax'
 export * from './validators/isNullable'
 export * from './validators/isRequired'
 export * from './validators/isOptional'
+
+// export * from './transformers/trunc'
+// export * from './transformers/round'
+// export * from './transformers/ceil'
+// export * from './transformers/floor'

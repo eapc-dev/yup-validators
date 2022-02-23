@@ -62,11 +62,11 @@ const SCHEMAS: [
     ['1234', '12345678901234'],
   ],
   [
-    'doesEqual',
+    'isEqualTo',
     string.schema(
       i18n.DEFAULT_INTL,
       string.isRequired(),
-      string.doesEqual({
+      string.isEqualTo({
         values: ['12', '14'],
       })
     ),
@@ -74,11 +74,11 @@ const SCHEMAS: [
     ['13', ''],
   ],
   [
-    'doesNotEqual',
+    'isDifferentThan',
     string.schema(
       i18n.DEFAULT_INTL,
       string.isRequired(),
-      string.doesNotEqual({
+      string.isDifferentThan({
         values: ['12', '14'],
       })
     ),
