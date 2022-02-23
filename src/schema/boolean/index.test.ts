@@ -18,6 +18,18 @@ const SCHEMAS: [
     [1, 0, true, false, undefined],
     [null],
   ],
+  [
+    'isTrue',
+    boolean.schema(i18n.DEFAULT_INTL, boolean.isRequired(), boolean.isTrue()),
+    [1, true],
+    [0, false, undefined, null],
+  ],
+  [
+    'isFalse',
+    boolean.schema(i18n.DEFAULT_INTL, boolean.isRequired(), boolean.isFalse()),
+    [0, false],
+    [1, true, undefined, null],
+  ],
 ]
 
 describe('Boolean validation', () => {
