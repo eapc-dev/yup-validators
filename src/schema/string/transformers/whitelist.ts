@@ -19,7 +19,7 @@ export const whitelist = (
 ): TStringValidatorResult => {
   const { active = true, chars } = props ?? {}
 
-  return (schema, intl) => {
+  return (schema) => {
     if (active) {
       schema = schema.transform((v: unknown) => (typeof v === 'string' ? _whitelist(v, chars) : v))
     }

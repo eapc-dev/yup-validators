@@ -17,7 +17,7 @@ export interface IToBooleanProps {
 export const toBoolean = (
   props?: IToBooleanProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
-  const { active = true, strict } = props ?? {}
+  const { strict, active = true } = props ?? {}
 
   return (schema, intl) => {
     if (active) {

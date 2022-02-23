@@ -18,7 +18,7 @@ export interface IRtrimProps {
 export const rtrim = (
   props?: IRtrimProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
-  const { active = true, chars } = props ?? {}
+  const { chars, active = true } = props ?? {}
 
   return (schema, intl) => {
     if (active) {

@@ -19,7 +19,7 @@ export interface IStripLowProps {
 export const stripLow = (
   props?: IStripLowProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
-  const { active = true, keepNewLines } = props ?? {}
+  const { keepNewLines, active = true } = props ?? {}
 
   return (schema, intl) => {
     if (active) {

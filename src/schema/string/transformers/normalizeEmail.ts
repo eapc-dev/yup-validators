@@ -14,7 +14,7 @@ export interface INormalizeEmailProps {
 export const normalizeEmail = (
   props?: INormalizeEmailProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
-  const { active = true, options } = props ?? {}
+  const { options, active = true } = props ?? {}
 
   return (schema, intl) => {
     if (active) {

@@ -14,7 +14,7 @@ export interface IToIntProps {
 export const toInt = (
   props?: IToIntProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
-  const { active = true, radix } = props ?? {}
+  const { radix, active = true } = props ?? {}
 
   return (schema, intl) => {
     if (active) {

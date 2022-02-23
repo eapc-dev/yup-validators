@@ -12,7 +12,7 @@ export const escape = (
 ): TStringValidatorResult => {
   const { active = true } = props ?? {}
 
-  return (schema, intl) => {
+  return (schema) => {
     if (active) {
       schema = schema.transform((v: unknown) => (typeof v === 'string' ? _escape(v) : v))
     }

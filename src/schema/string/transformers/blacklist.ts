@@ -17,9 +17,9 @@ export interface IBlacklistProps {
 export const blacklist = (
   props: IBlacklistProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
-  const { active = true, chars } = props ?? {}
+  const { chars, active = true } = props ?? {}
 
-  return (schema, intl) => {
+  return (schema) => {
     if (active) {
       schema = schema.transform((v: unknown) => (typeof v === 'string' ? _blacklist(v, chars) : v))
     }

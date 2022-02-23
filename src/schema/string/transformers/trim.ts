@@ -18,9 +18,9 @@ export interface ITrimProps {
 export const trim = (
   props?: ITrimProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
-  const { active = true, chars } = props ?? {}
+  const { chars, active = true } = props ?? {}
 
-  return (schema, intl) => {
+  return (schema) => {
     if (active) {
       schema = schema.transform((v: unknown) => (typeof v === 'string' ? _trim(v, chars) : v))
     }
