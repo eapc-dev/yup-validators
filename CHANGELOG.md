@@ -1,3 +1,11 @@
+## [0.4.0](https://github.com/eapc-dev/yup-validators/compare/0.3.0...0.4.0) (2022-02-23)
+
+
+### Features
+
+* added array transformers ([efc58e4](https://github.com/eapc-dev/yup-validators/commit/efc58e4894ebd001f33e2281009ad22702eae2c7))
+* length validators for array, date and number ([1792965](https://github.com/eapc-dev/yup-validators/commit/17929650372fb9eed6da10aa118e618a80735608))
+
 ## [0.3.0](https://github.com/jordanmonier/yup-validators/compare/0.2.1...0.3.0) (2022-02-22)
 
 
