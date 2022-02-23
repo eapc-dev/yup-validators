@@ -30,6 +30,30 @@ const SCHEMAS: [
     [0, false],
     [1, true, undefined, null],
   ],
+  [
+    'doesEqual',
+    boolean.schema(
+      i18n.DEFAULT_INTL,
+      boolean.isRequired(),
+      boolean.doesEqual({
+        values: false,
+      })
+    ),
+    [0, false],
+    [1, true, undefined, null],
+  ],
+  [
+    'doesNotEqual',
+    boolean.schema(
+      i18n.DEFAULT_INTL,
+      boolean.isRequired(),
+      boolean.doesNotEqual({
+        values: false,
+      })
+    ),
+    [1, true],
+    [0, false, undefined, null],
+  ],
 ]
 
 describe('Boolean validation', () => {
