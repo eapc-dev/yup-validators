@@ -46,12 +46,7 @@ export const doesNotContain = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.field.s_not_contain' },
                   {
-                    values: blacklistString.join(
-                      intl.formatErrorMessage({
-                        id: 'lang.array_separator',
-                        defaultMessage: ', ',
-                      })
-                    ),
+                    values: intl.formatList(blacklistString),
                     match_all: matchAll,
                   }
                 ),

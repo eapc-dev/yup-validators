@@ -36,21 +36,11 @@ export const isURL = (
                     ...options,
                     protocols: options?.protocols?.join(','),
                     host_whitelist: options?.host_whitelist
-                      ?.map((e) => e.toString())
-                      .join(
-                        intl.formatErrorMessage({
-                          id: 'lang.array_separator',
-                          defaultMessage: ', ',
-                        })
-                      ),
+                      ? intl.formatList(options.host_whitelist.map((e) => e.toString()))
+                      : undefined,
                     host_blacklist: options?.host_blacklist
-                      ?.map((e) => e.toString())
-                      .join(
-                        intl.formatErrorMessage({
-                          id: 'lang.array_separator',
-                          defaultMessage: ', ',
-                        })
-                      ),
+                      ? intl.formatList(options.host_blacklist.map((e) => e.toString()))
+                      : undefined,
                   }
                 ),
               })

@@ -18,11 +18,15 @@ export const schema = (intl: IIntlShape, ...validators: TDateValidatorResult[]):
 
 export * from './_types'
 
-// export * from './validators/isEqual'
-// export * from './validators/isDifferentThan'
-// export * from './validators/isFuture'
+export * from './validators/isEqualTo'
+export * from './validators/isDifferentThan'
+export * from './validators/isInFuture'
 export * from './validators/isMinMax'
-// export * from './validators/isNotFuture'
+export * from './validators/isNotInFuture'
 export * from './validators/isNullable'
 export * from './validators/isRequired'
 export * from './validators/isOptional'
+
+export * from './transformers/setEndOf'
+export * from './transformers/setStartOf'
+export * from './transformers/set'

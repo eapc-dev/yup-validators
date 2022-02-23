@@ -37,9 +37,9 @@ export const isEmail = (
                   { id: message ?? 'e.field.s_must_be_an_email' },
                   {
                     ...options,
-                    host_blacklist: options?.host_blacklist?.join(
-                      intl.formatErrorMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
-                    ),
+                    host_blacklist: options?.host_blacklist
+                      ? intl.formatList(options.host_blacklist)
+                      : undefined,
                   }
                 ),
               })

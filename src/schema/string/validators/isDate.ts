@@ -43,9 +43,9 @@ export const isDate = (
                   { id: message ?? 'e.field.s_must_be_a_date' },
                   {
                     ...options,
-                    delimiters: options?.delimiters?.join(
-                      intl.formatErrorMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
-                    ),
+                    delimiters: options?.delimiters
+                      ? intl.formatList(options.delimiters)
+                      : undefined,
                   }
                 ),
               })

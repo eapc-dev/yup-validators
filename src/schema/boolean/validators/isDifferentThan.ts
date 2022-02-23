@@ -42,12 +42,7 @@ export const isDifferentThan = (
                   { id: message ?? 'e.field.b_is_different_than' },
                   {
                     values: Array.isArray(values)
-                      ? values.join(
-                          intl.formatErrorMessage({
-                            id: 'lang.array_separator',
-                            defaultMessage: ', ',
-                          })
-                        )
+                      ? intl.formatList(values.map((e) => e.toString()))
                       : values,
                   }
                 ),

@@ -41,14 +41,7 @@ export const isMobilePhone = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.field.s_must_be_a_mobile_phone' },
                   {
-                    locale: Array.isArray(locale)
-                      ? locale.join(
-                          intl.formatErrorMessage({
-                            id: 'lang.array_separator',
-                            defaultMessage: ', ',
-                          })
-                        )
-                      : locale,
+                    locale: Array.isArray(locale) ? intl.formatList(locale) : locale,
                     ...options,
                   }
                 ),

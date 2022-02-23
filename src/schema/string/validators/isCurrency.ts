@@ -39,9 +39,11 @@ export const isCurrency = (
                   { id: message ?? 'e.field.s_must_be_a_currency_amount' },
                   {
                     ...options,
-                    digits_after_decimal: options?.digits_after_decimal?.join(
-                      intl.formatErrorMessage({ id: 'lang.array_separator', defaultMessage: ', ' })
-                    ),
+                    digits_after_decimal: options?.digits_after_decimal
+                      ? intl.formatList(
+                          options.digits_after_decimal.map((e) => intl.formatNumber(e))
+                        )
+                      : undefined,
                   }
                 ),
               })

@@ -45,6 +45,30 @@ const SCHEMAS: [
     [new Date(1998, 0, 14), new Date(1999, 0, 1), new Date(1999, 0, 14)],
     [new Date(1998, 0, 12), new Date(1999, 0, 15)],
   ],
+  [
+    'isEqualTo',
+    date.schema(
+      i18n.DEFAULT_INTL,
+      date.isRequired(),
+      date.isEqualTo({
+        values: new Date(1998, 0, 14),
+      })
+    ),
+    ['1998-01-14'],
+    [new Date(), null],
+  ],
+  [
+    'isDifferentThan',
+    date.schema(
+      i18n.DEFAULT_INTL,
+      date.isRequired(),
+      date.isDifferentThan({
+        values: new Date(1998, 0, 14),
+      })
+    ),
+    [new Date()],
+    ['1998-01-14', null],
+  ],
 ]
 
 describe('Date validation', () => {

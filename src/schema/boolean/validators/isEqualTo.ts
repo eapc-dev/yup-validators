@@ -42,12 +42,7 @@ export const isEqualTo = (
                   { id: message ?? 'e.field.b_is_equal_to' },
                   {
                     values: Array.isArray(values)
-                      ? values.join(
-                          intl.formatErrorMessage({
-                            id: 'lang.array_separator',
-                            defaultMessage: ', ',
-                          })
-                        )
+                      ? intl.formatList(values.map((e) => e.toString()))
                       : values,
                   }
                 ),
