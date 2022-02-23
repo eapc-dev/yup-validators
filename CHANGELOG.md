@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/eapc-dev/yup-validators/compare/1.0.0...1.1.0) (2022-02-23)
+
+
+### Features
+
+* added date validators and transformers ([93029e7](https://github.com/eapc-dev/yup-validators/commit/93029e71f951348d3b3e8964e26c1226d2f25d6c))
+
 ## [1.0.0](https://github.com/eapc-dev/yup-validators/compare/0.4.0...1.0.0) (2022-02-23)
 
 
