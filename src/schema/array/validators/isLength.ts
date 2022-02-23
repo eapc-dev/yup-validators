@@ -1,13 +1,15 @@
+import * as yup from 'yup'
+
 import { parseReference, TReferenceProps } from '../../..'
-import { IStringProps, TStringValidatorResult } from '../_types'
+import { IArrayProps, TArrayValidatorResult } from '../_types'
 
 export interface IIsLengthProps {
   /**
-   * Minimum length of the string.
+   * Minimum length of the array.
    */
   min?: number
   /**
-   * Delta added to `min` (eg: you have a `min` of `10` and a `minDelta` of `5`, then the minimal length of the string will be `15`). You can also use negative value. This property is useful when you are using refs.
+   * Delta added to `min` (eg: you have a `min` of `10` and a `minDelta` of `5`, then the minimal length of the array will be `15`). You can also use negative value. This property is useful when you are using refs.
    */
   minDelta?: number
   /**
@@ -18,11 +20,11 @@ export interface IIsLengthProps {
   minIncluded?: boolean
 
   /**
-   * Maximum length of the string.
+   * Maximum length of the array.
    */
   max?: number
   /**
-   * Delta added to `max` (eg: you have a `max` of `10` and a `maxDelta` of `5`, then the maximal length of the string will be `15`). You can also use negative value. This property is useful when you are using refs.
+   * Delta added to `max` (eg: you have a `max` of `10` and a `maxDelta` of `5`, then the maximal length of the array will be `15`). You can also use negative value. This property is useful when you are using refs.
    */
   maxDelta?: number
   /**
@@ -34,18 +36,18 @@ export interface IIsLengthProps {
 }
 
 /**
- * Check if the string corresponds to the length constraints.
+ * Check if the `array` is defined.
  */
-export const isLength = (
-  props?: TReferenceProps<IIsLengthProps> & IStringProps
-): TStringValidatorResult => {
+export const isLength = <T extends yup.AnySchema>(
+  props?: TReferenceProps<IIsLengthProps> & IArrayProps
+): TArrayValidatorResult<T> => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
         test(value) {
-          if (typeof value !== 'string') return true
+          if (!Array.isArray(value)) return true
 
           const { length } = value
 
@@ -78,7 +80,7 @@ export const isLength = (
           if (!minValid && !maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.s_min_max_length' },
+                { id: message ?? 'e.form.a_min_max_length' },
                 {
                   min: minValue,
                   min_included: minIncluded,
@@ -91,7 +93,7 @@ export const isLength = (
             if (!minValid) {
               return this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.form.s_min_length' },
+                  { id: message ?? 'e.form.a_min_length' },
                   {
                     min: minValue,
                     min_included: minIncluded,
@@ -102,7 +104,7 @@ export const isLength = (
           } else if (!maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.s_max_length' },
+                { id: message ?? 'e.form.a_max_length' },
                 {
                   max: maxValue,
                   max_included: maxIncluded,

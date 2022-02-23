@@ -18,6 +18,33 @@ const SCHEMAS: [
     [new Date(), '1998-01-14', undefined],
     [null],
   ],
+  [
+    'isMinMax',
+    date.schema(
+      i18n.DEFAULT_INTL,
+      date.isRequired(),
+      date.isMinMax({
+        min: new Date(1998, 0, 14),
+        max: new Date(1999, 0, 14),
+      })
+    ),
+    [new Date(1998, 0, 14), new Date(1999, 0, 1), new Date(1999, 0, 14)],
+    [new Date(1998, 0, 13), new Date(1999, 0, 15)],
+  ],
+  [
+    'isMinMax (delta)',
+    date.schema(
+      i18n.DEFAULT_INTL,
+      date.isRequired(),
+      date.isMinMax({
+        min: new Date(1998, 0, 14),
+        minDelta: [[-1, 'day']],
+        max: new Date(1999, 0, 14),
+      })
+    ),
+    [new Date(1998, 0, 14), new Date(1999, 0, 1), new Date(1999, 0, 14)],
+    [new Date(1998, 0, 12), new Date(1999, 0, 15)],
+  ],
 ]
 
 describe('Date validation', () => {

@@ -27,8 +27,9 @@ export const parseValue = <T>(
     typeof value === 'boolean' ||
     typeof value === 'number' ||
     typeof value === 'undefined' ||
-    value === null ||
-    value instanceof RegExp
+    value instanceof RegExp ||
+    value instanceof Date ||
+    value === null
   ) {
     return value
   }

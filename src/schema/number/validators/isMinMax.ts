@@ -1,13 +1,13 @@
 import { parseReference, TReferenceProps } from '../../..'
-import { IStringProps, TStringValidatorResult } from '../_types'
+import { INumberProps, TNumberValidatorResult } from '../_types'
 
-export interface IIsLengthProps {
+export interface IIsMinMaxProps {
   /**
-   * Minimum length of the string.
+   * Minimum value.
    */
   min?: number
   /**
-   * Delta added to `min` (eg: you have a `min` of `10` and a `minDelta` of `5`, then the minimal length of the string will be `15`). You can also use negative value. This property is useful when you are using refs.
+   * Delta added to `min` (eg: you have a `min` of `10` and a `minDelta` of `5`, then the minimal value will be `15`). You can also use negative value. This property is useful when you are using refs.
    */
   minDelta?: number
   /**
@@ -18,11 +18,11 @@ export interface IIsLengthProps {
   minIncluded?: boolean
 
   /**
-   * Maximum length of the string.
+   * Maximum value.
    */
   max?: number
   /**
-   * Delta added to `max` (eg: you have a `max` of `10` and a `maxDelta` of `5`, then the maximal length of the string will be `15`). You can also use negative value. This property is useful when you are using refs.
+   * Delta added to `max` (eg: you have a `max` of `10` and a `maxDelta` of `5`, then the maximal value will be `15`). You can also use negative value. This property is useful when you are using refs.
    */
   maxDelta?: number
   /**
@@ -34,20 +34,18 @@ export interface IIsLengthProps {
 }
 
 /**
- * Check if the string corresponds to the length constraints.
+ * Check if the value corresponds to the min/max constraints.
  */
-export const isLength = (
-  props?: TReferenceProps<IIsLengthProps> & IStringProps
-): TStringValidatorResult => {
+export const isMinMax = (
+  props?: TReferenceProps<IIsMinMaxProps> & INumberProps
+): TNumberValidatorResult => {
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
     if (active) {
       schema = schema.test({
         test(value) {
-          if (typeof value !== 'string') return true
-
-          const { length } = value
+          if (typeof value !== 'number') return true
 
           const {
             min,
@@ -56,7 +54,7 @@ export const isLength = (
             max,
             maxDelta,
             maxIncluded = true,
-          } = parseReference<IIsLengthProps>(this, props)
+          } = parseReference<IIsMinMaxProps>(this, props)
 
           const minValue = min ? min + (minDelta ?? 0) : undefined
           const maxValue = max ? max + (maxDelta ?? 0) : undefined
@@ -64,21 +62,21 @@ export const isLength = (
           const minValid =
             typeof minValue === 'number'
               ? minIncluded
-                ? length >= minValue
-                : length > minValue
+                ? value >= minValue
+                : value > minValue
               : true
 
           const maxValid =
             typeof maxValue === 'number'
               ? maxIncluded
-                ? length <= maxValue
-                : length < maxValue
+                ? value <= maxValue
+                : value < maxValue
               : true
 
           if (!minValid && !maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.s_min_max_length' },
+                { id: message ?? 'e.form.n_min_max' },
                 {
                   min: minValue,
                   min_included: minIncluded,
@@ -91,7 +89,7 @@ export const isLength = (
             if (!minValid) {
               return this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.form.s_min_length' },
+                  { id: message ?? 'e.form.n_min' },
                   {
                     min: minValue,
                     min_included: minIncluded,
@@ -102,7 +100,7 @@ export const isLength = (
           } else if (!maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.s_max_length' },
+                { id: message ?? 'e.form.n_max' },
                 {
                   max: maxValue,
                   max_included: maxIncluded,

@@ -18,6 +18,39 @@ const SCHEMAS: [
     [0, 1, -1, 0.000_01, undefined],
     [null],
   ],
+  [
+    'isMinMax',
+    number.schema(i18n.DEFAULT_INTL, number.isRequired(), number.isMinMax({ min: 5, max: 7 })),
+    [5, 6, 7, 5.000_000_1],
+    [4, 8, null],
+  ],
+  [
+    'isMinMax (delta)',
+    number.schema(
+      i18n.DEFAULT_INTL,
+      number.isRequired(),
+      number.isMinMax({ min: 5, minDelta: -1, max: 7, maxDelta: 1 })
+    ),
+    [4, 5, 6, 7, 5.000_000_1, 8],
+    [-1, 3, null, 9],
+  ],
+  [
+    'isMinMax (not included)',
+    number.schema(
+      i18n.DEFAULT_INTL,
+      number.isRequired(),
+      number.isMinMax({
+        min: 5,
+        minDelta: -1,
+        minIncluded: false,
+        max: 7,
+        maxDelta: 1,
+        maxIncluded: false,
+      })
+    ),
+    [4.000_001, 5, 6, 7, 5.000_000_1, 7.999_999],
+    [-1, 3, 4, null, 8, 9],
+  ],
 ]
 
 describe('Number validation', () => {

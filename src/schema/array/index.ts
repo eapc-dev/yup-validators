@@ -22,6 +22,7 @@ export const schema = <T extends yup.AnySchema>(
 
 export * from './_types'
 
+export * from './validators/isLength'
 export * from './validators/isNullable'
 export * from './validators/isRequired'
 export * from './validators/isOptional'

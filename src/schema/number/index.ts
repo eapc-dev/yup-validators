@@ -21,6 +21,7 @@ export const schema = (
 
 export * from './_types'
 
+export * from './validators/isMinMax'
 export * from './validators/isNullable'
 export * from './validators/isRequired'
 export * from './validators/isOptional'
