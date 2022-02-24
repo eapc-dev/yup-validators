@@ -22,6 +22,16 @@ const SCHEMAS: [
     [[], undefined],
     [null],
   ],
+  [
+    'isEmail',
+    array.schema(
+      string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isEmail()),
+      i18n.DEFAULT_INTL,
+      array.isRequired({ active: false })
+    ),
+    [[], ['coucou@eapc.be']],
+    [null, [null], [undefined], [''], ['coucou@']],
+  ],
 ]
 
 describe('Array validation', () => {
