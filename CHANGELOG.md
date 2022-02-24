@@ -1,3 +1,10 @@
+### [1.2.2](https://github.com/eapc-dev/yup-validators/compare/1.2.1...1.2.2) (2022-02-24)
+
+
+### Bug Fixes
+
+* use IntlShape from react-intl ([e8a2d6d](https://github.com/eapc-dev/yup-validators/commit/e8a2d6da9a6b006a3af2a353952961bb3784f300))
+
 ### [1.2.1](https://github.com/eapc-dev/yup-validators/compare/1.2.0...1.2.1) (2022-02-24)
 
 
