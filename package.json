@@ -17,6 +17,14 @@
     "prepare": "husky install",
     "release": "release-it"
   },
+  "keywords": [
+    "yup",
+    "validator",
+    "i18n",
+    "validation",
+    "react",
+    "formik"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/eapc-dev/yup-validators"
