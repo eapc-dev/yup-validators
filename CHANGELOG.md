@@ -1,3 +1,10 @@
+### [1.2.3](https://github.com/eapc-dev/yup-validators/compare/1.2.2...1.2.3) (2022-02-24)
+
+
+### Bug Fixes
+
+* stripLow file case ([51c0d8c](https://github.com/eapc-dev/yup-validators/commit/51c0d8ca69a30066ba36a88a9972e09c86cc8a3a))
+
 ### [1.2.2](https://github.com/eapc-dev/yup-validators/compare/1.2.1...1.2.2) (2022-02-24)
 
 
