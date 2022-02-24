@@ -5,9 +5,9 @@ import Reference from 'yup/lib/Reference'
 import { Maybe } from 'yup/lib/types'
 
 import { TReferenceProps } from '../'
-import { TFormatMessage } from '../i18n/placeholder'
+import { IIntlShape } from '../i18n/placeholder'
 
-export type TMessage = string | Parameters<TFormatMessage>
+export type TMessage = string | Parameters<IIntlShape['formatMessage']>
 
 export const getValueFromContext = <T>(context: yup.TestContext, ref: Reference<T>): Maybe<T> => {
   return context.resolve(ref)
@@ -62,7 +62,7 @@ export const parseReference = <T extends Maybe<object>>(
 }
 
 export const formatMessageValues = (
-  values: Parameters<TFormatMessage>[1]
-): Parameters<TFormatMessage>[1] => {
+  values: Parameters<IIntlShape['formatMessage']>[1]
+): Parameters<IIntlShape['formatMessage']>[1] => {
   return mapKeys(values, (v, k) => snakeCase(k))
 }
