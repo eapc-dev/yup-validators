@@ -8,7 +8,7 @@ export interface IUnescapeProps {}
  * 	Replace HTML encoded entities with `<`, `>`, `&`, `'`, `"` and `/`.
  */
 export const unescape = (
-  props: IUnescapeProps & Omit<IStringProps, 'message'>
+  props?: IUnescapeProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
   const { active = true } = props ?? {}
 

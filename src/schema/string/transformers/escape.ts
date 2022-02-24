@@ -8,7 +8,7 @@ export interface IEscapeProps {}
  * Replace `<`, `>`, `&`, `'`, `"` and `/` with HTML entities.
  */
 export const escape = (
-  props: IEscapeProps & Omit<IStringProps, 'message'>
+  props?: IEscapeProps & Omit<IStringProps, 'message'>
 ): TStringValidatorResult => {
   const { active = true } = props ?? {}
 

@@ -51,6 +51,56 @@ const SCHEMAS: [
     [4.000_001, 5, 6, 7, 5.000_000_1, 7.999_999],
     [-1, 3, 4, null, 8, 9],
   ],
+  [
+    'isDifferentThan',
+    number.schema(
+      i18n.DEFAULT_INTL,
+      number.isRequired(),
+      number.isDifferentThan({ values: [0, 1] })
+    ),
+    [-1, 0.000_01],
+    [undefined, null, 0, 1, ''],
+  ],
+  [
+    'isEqualTo',
+    number.schema(i18n.DEFAULT_INTL, number.isRequired(), number.isEqualTo({ values: [0, 1] })),
+    [0, 1],
+    [undefined, null, -1, 0.000_01, ''],
+  ],
+  [
+    'isPositive',
+    number.schema(i18n.DEFAULT_INTL, number.isRequired(), number.isPositive()),
+    [1],
+    [undefined, null, -1, 0],
+  ],
+  [
+    'isNegative',
+    number.schema(i18n.DEFAULT_INTL, number.isRequired(), number.isNegative()),
+    [-1],
+    [undefined, null, 1, 0],
+  ],
+  [
+    'isMod',
+    number.schema(i18n.DEFAULT_INTL, number.isRequired(), number.isMod({ values: [10, 20] })),
+    [0, 10, 20, 5_565_450],
+    [undefined, null, 1, 5, 25, 10.000_000_000_001],
+  ],
+  [
+    'isMod (matchAll)',
+    number.schema(
+      i18n.DEFAULT_INTL,
+      number.isRequired(),
+      number.isMod({ values: [10, 20], matchAll: true })
+    ),
+    [0, 20, 5_565_460],
+    [undefined, null, 1, 5, 25, 10.000_000_000_001],
+  ],
+  [
+    'isInteger',
+    number.schema(i18n.DEFAULT_INTL, number.isRequired(), number.isInteger()),
+    [0, 10, 20, 5_565_450, -2],
+    [undefined, null, 0.1, 10.000_000_000_001],
+  ],
 ]
 
 describe('Number validation', () => {

@@ -46,7 +46,9 @@ export const doesContain = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.field.s_contain' },
                   {
-                    values: intl.formatList(whitelistString),
+                    values: intl.formatList(whitelistString, {
+                      type: matchAll ? 'conjunction' : 'disjunction',
+                    }),
                     match_all: matchAll,
                   }
                 ),
