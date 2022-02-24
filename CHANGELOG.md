@@ -1,3 +1,15 @@
+## [1.2.0](https://github.com/eapc-dev/yup-validators/compare/1.1.0...1.2.0) (2022-02-24)
+
+
+### Features
+
+* added number validators and transformers ([763f39e](https://github.com/eapc-dev/yup-validators/commit/763f39e00f51e0c13454dc506d64089f72f680ef))
+
+
+### Bug Fixes
+
+* removed TFormatMessage ([47082be](https://github.com/eapc-dev/yup-validators/commit/47082be74c9769aca3c1935b3ed2edce7e5eb4df))
+
 ## [1.1.0](https://github.com/eapc-dev/yup-validators/compare/1.0.0...1.1.0) (2022-02-23)
 
 
