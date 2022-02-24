@@ -1,4 +1,4 @@
-import { createIntl, IntlShape } from '@formatjs/intl'
+import { createIntl, IntlShape } from 'react-intl'
 
 export interface IIntlShape extends IntlShape {
   formatErrorMessage: IntlShape['formatMessage']
