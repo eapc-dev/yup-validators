@@ -4,9 +4,9 @@ import { IIntlShape } from '../../i18n/placeholder'
 
 import { TBooleanValidatorResult } from './_types'
 
-export const schema = (
-  intl: IIntlShape,
-  ...validators: TBooleanValidatorResult[]
+export const schema = <Intl extends IIntlShape = IIntlShape>(
+  intl: Intl,
+  ...validators: TBooleanValidatorResult<Intl>[]
 ): yup.BooleanSchema => {
   let value = new yup.BooleanSchema()
 

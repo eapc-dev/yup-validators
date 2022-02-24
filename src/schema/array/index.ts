@@ -4,10 +4,10 @@ import { IIntlShape } from '../../i18n/placeholder'
 
 import { TArrayValidatorResult } from './_types'
 
-export const schema = <T extends yup.AnySchema>(
+export const schema = <T extends yup.AnySchema, Intl extends IIntlShape = IIntlShape>(
   array: T,
-  intl: IIntlShape,
-  ...validators: TArrayValidatorResult<T>[]
+  intl: Intl,
+  ...validators: TArrayValidatorResult<T, Intl>[]
 ): yup.ArraySchema<T> => {
   let value = new yup.ArraySchema<T>(array)
 

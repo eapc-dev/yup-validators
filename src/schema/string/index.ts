@@ -4,9 +4,9 @@ import { IIntlShape } from '../../i18n/placeholder'
 
 import { TStringValidatorResult } from './_types'
 
-export const schema = (
-  intl: IIntlShape,
-  ...validators: TStringValidatorResult[]
+export const schema = <Intl extends IIntlShape = IIntlShape>(
+  intl: Intl,
+  ...validators: TStringValidatorResult<Intl>[]
 ): yup.StringSchema => {
   let value = new yup.StringSchema()
 

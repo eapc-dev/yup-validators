@@ -4,7 +4,10 @@ import { IIntlShape } from '../../i18n/placeholder'
 
 import { TDateValidatorResult } from './_types'
 
-export const schema = (intl: IIntlShape, ...validators: TDateValidatorResult[]): yup.DateSchema => {
+export const schema = <Intl extends IIntlShape = IIntlShape>(
+  intl: Intl,
+  ...validators: TDateValidatorResult<Intl>[]
+): yup.DateSchema => {
   let value = new yup.DateSchema()
 
   for (const validator of validators) {

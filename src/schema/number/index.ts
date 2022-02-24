@@ -4,9 +4,9 @@ import { IIntlShape } from '../../i18n/placeholder'
 
 import { TNumberValidatorResult } from './_types'
 
-export const schema = (
-  intl: IIntlShape,
-  ...validators: TNumberValidatorResult[]
+export const schema = <Intl extends IIntlShape = IIntlShape>(
+  intl: Intl,
+  ...validators: TNumberValidatorResult<Intl>[]
 ): yup.NumberSchema => {
   let value = new yup.NumberSchema()
 
