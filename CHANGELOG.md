@@ -1,3 +1,10 @@
+### [1.2.1](https://github.com/eapc-dev/yup-validators/compare/1.2.0...1.2.1) (2022-02-24)
+
+
+### Bug Fixes
+
+* intl to be extendable ([d96786e](https://github.com/eapc-dev/yup-validators/commit/d96786e7d32a4c4d0394c13ccedf5f821f3040e9))
+
 ## [1.2.0](https://github.com/eapc-dev/yup-validators/compare/1.1.0...1.2.0) (2022-02-24)
 
 
