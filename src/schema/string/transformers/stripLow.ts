@@ -1,4 +1,4 @@
-import _stripLow from 'validator/lib/striplow'
+import _stripLow from 'validator/lib/stripLow'
 
 import { IStringProps, TStringValidatorResult } from '../_types'
 
