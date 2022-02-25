@@ -1,3 +1,10 @@
+### [1.2.4](https://github.com/eapc-dev/yup-validators/compare/1.2.3...1.2.4) (2022-02-25)
+
+
+### Bug Fixes
+
+* changed message id and added extract script ([541b32b](https://github.com/eapc-dev/yup-validators/commit/541b32bb254c7bc172541b706d6c187ca680e687))
+
 ### [1.2.3](https://github.com/eapc-dev/yup-validators/compare/1.2.2...1.2.3) (2022-02-24)
 
 
