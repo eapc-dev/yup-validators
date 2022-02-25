@@ -22,7 +22,7 @@ export const isISO31661Alpha3 = (
           return _isISO31661Alpha3(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_iso31661alpha3_country_code',
+          id: message ?? 'e.y_v.s_must_be_an_iso31661alpha3_country_code',
         }),
       })
     }

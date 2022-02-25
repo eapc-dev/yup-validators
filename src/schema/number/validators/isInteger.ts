@@ -24,7 +24,7 @@ export const isInteger = (
           return result
             ? true
             : this.createError({
-                message: intl.formatErrorMessage({ id: message ?? 'e.field.n_is_integer' }),
+                message: intl.formatErrorMessage({ id: message ?? 'e.y_v.n_is_integer' }),
               })
         },
       })

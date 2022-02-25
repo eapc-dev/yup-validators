@@ -36,7 +36,7 @@ export const isCurrency = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_a_currency_amount' },
+                  { id: message ?? 'e.y_v.s_must_be_a_currency_amount' },
                   {
                     ...options,
                     digits_after_decimal: options?.digits_after_decimal

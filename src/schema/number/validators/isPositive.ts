@@ -14,7 +14,7 @@ export const isPositive = (
   return (schema, intl) => {
     if (active) {
       schema = schema.positive(
-        intl.formatErrorMessage({ id: message ?? 'e.field.n_must_be_positive' })
+        intl.formatErrorMessage({ id: message ?? 'e.y_v.n_must_be_positive' })
       )
     }
 

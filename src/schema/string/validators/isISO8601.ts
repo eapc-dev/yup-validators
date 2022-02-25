@@ -22,7 +22,7 @@ export const isISO8601 = (
           return _isISO8601(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_iso8601_date',
+          id: message ?? 'e.y_v.s_must_be_an_iso8601_date',
         }),
       })
     }

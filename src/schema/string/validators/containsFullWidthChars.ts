@@ -22,7 +22,7 @@ export const containsFullWidthChars = (
           return isFullWidth(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_contains_full_width_chars',
+          id: message ?? 'e.y_v.s_must_contains_full_width_chars',
         }),
       })
     }

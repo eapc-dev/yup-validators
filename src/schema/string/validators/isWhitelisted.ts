@@ -34,7 +34,7 @@ export const isWhitelisted = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_whitelisted' },
+                  { id: message ?? 'e.y_v.s_must_be_whitelisted' },
                   {
                     chars: Array.isArray(chars) ? intl.formatList(chars) : chars,
                   }

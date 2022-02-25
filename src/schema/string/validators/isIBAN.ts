@@ -22,7 +22,7 @@ export const isIBAN = (
           return _isIBAN(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_iban',
+          id: message ?? 'e.y_v.s_must_be_an_iban',
         }),
       })
     }

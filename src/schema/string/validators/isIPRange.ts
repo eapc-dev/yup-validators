@@ -34,7 +34,7 @@ export const isIPRange = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_an_ip_range' },
+                  { id: message ?? 'e.y_v.s_must_be_an_ip_range' },
                   { version }
                 ),
               })

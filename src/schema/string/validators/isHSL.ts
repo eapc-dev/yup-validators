@@ -23,7 +23,7 @@ export const isHSL = (
           return _isHSL(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_hsl_color',
+          id: message ?? 'e.y_v.s_must_be_an_hsl_color',
         }),
       })
     }

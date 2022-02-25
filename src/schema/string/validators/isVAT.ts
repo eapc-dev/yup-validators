@@ -34,7 +34,7 @@ export const isVAT = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_a_vat_number' },
+                  { id: message ?? 'e.y_v.s_must_be_a_vat_number' },
                   { country_code: countryCode }
                 ),
               })

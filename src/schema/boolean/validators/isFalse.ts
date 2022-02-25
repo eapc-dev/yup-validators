@@ -13,7 +13,7 @@ export const isFalse = (
 
   return (schema, intl) => {
     if (active) {
-      schema = schema.isFalse(intl.formatErrorMessage({ id: message ?? 'e.field.is_false' }))
+      schema = schema.isFalse(intl.formatErrorMessage({ id: message ?? 'e.y_v.b_is_false' }))
     }
 
     return schema

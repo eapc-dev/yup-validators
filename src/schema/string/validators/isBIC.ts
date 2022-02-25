@@ -21,7 +21,7 @@ export const isBIC = (
 
           return _isBIC(value)
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_bic' }),
+        message: intl.formatErrorMessage({ id: message ?? 'e.y_v.s_must_be_bic' }),
       })
     }
 

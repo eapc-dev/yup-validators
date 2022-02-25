@@ -22,7 +22,7 @@ export const isHexColor = (
           return _isHexColor(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_hexcolor_color',
+          id: message ?? 'e.y_v.s_must_be_an_hexadecimal_color',
         }),
       })
     }

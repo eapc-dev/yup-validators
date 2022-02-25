@@ -34,7 +34,7 @@ export const isBoolean = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_a_boolean' },
+                  { id: message ?? 'e.y_v.s_must_be_a_boolean' },
                   { ...options }
                 ),
               })

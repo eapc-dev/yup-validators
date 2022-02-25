@@ -22,7 +22,7 @@ export const isJWT = (
           return _isJWT(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_a_jwt',
+          id: message ?? 'e.y_v.s_must_be_a_jwt',
         }),
       })
     }

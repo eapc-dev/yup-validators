@@ -22,7 +22,7 @@ export const isISRC = (
           return _isISRC(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_isrc',
+          id: message ?? 'e.y_v.s_must_be_an_isrc',
         }),
       })
     }

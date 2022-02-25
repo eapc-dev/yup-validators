@@ -22,7 +22,7 @@ export const isMD5 = (
           return _isMD5(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_a_md5_hash',
+          id: message ?? 'e.y_v.s_must_be_a_md5_hash',
         }),
       })
     }

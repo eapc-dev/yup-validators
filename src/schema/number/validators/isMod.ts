@@ -49,7 +49,7 @@ export const isMod = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.n_is_mod' },
+                  { id: message ?? 'e.y_v.n_is_mod' },
                   {
                     values: Array.isArray(values)
                       ? intl.formatList(

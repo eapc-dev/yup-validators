@@ -21,7 +21,7 @@ export const isBase58 = (
 
           return _isBase58(value)
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_base58' }),
+        message: intl.formatErrorMessage({ id: message ?? 'e.y_v.s_must_be_base58' }),
       })
     }
 

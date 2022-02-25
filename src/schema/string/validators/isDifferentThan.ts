@@ -39,7 +39,7 @@ export const isDifferentThan = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_is_different_than' },
+                  { id: message ?? 'e.y_v.s_is_different_than' },
                   {
                     values: Array.isArray(values) ? intl.formatList(values) : values,
                   }

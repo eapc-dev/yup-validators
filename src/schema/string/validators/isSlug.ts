@@ -22,7 +22,7 @@ export const isSlug = (
           return _isSlug(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_a_slug',
+          id: message ?? 'e.y_v.s_must_be_a_slug',
         }),
       })
     }

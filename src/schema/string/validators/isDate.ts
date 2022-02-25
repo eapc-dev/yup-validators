@@ -40,7 +40,7 @@ export const isDate = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_a_date' },
+                  { id: message ?? 'e.y_v.s_must_be_a_date' },
                   {
                     ...options,
                     delimiters: options?.delimiters

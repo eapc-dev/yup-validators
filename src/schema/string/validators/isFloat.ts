@@ -38,7 +38,7 @@ export const isFloat = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_float' },
+                  { id: message ?? 'e.y_v.s_must_be_float' },
                   { ...options }
                 ),
               })

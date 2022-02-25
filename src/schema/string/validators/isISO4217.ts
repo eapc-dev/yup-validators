@@ -22,7 +22,7 @@ export const isISO4217 = (
           return _isISO4217(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_iso4217_currency_code',
+          id: message ?? 'e.y_v.s_must_be_an_iso4217_currency_code',
         }),
       })
     }

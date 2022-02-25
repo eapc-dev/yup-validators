@@ -16,7 +16,7 @@ export const isRequired = <T extends yup.AnySchema>(
   return (schema, intl) => {
     if (active) {
       schema = schema.required(
-        intl.formatErrorMessage({ id: message ?? 'e.field.is_required' })
+        intl.formatErrorMessage({ id: message ?? 'e.y_v.is_required' })
       ) as yup.ArraySchema<T>
     }
 

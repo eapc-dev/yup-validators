@@ -49,7 +49,7 @@ export const isEqualTo = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.d_is_equal_to' },
+                  { id: message ?? 'e.y_v.d_is_equal_to' },
                   {
                     values: Array.isArray(values)
                       ? intl.formatList(values.map((e) => e.toString()))

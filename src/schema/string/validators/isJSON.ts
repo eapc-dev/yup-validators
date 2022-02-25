@@ -21,7 +21,7 @@ export const isJSON = (
 
           return _isJSON(value)
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_a_json' }),
+        message: intl.formatErrorMessage({ id: message ?? 'e.y_v.s_must_be_a_json' }),
       })
     }
 

@@ -22,7 +22,7 @@ export const isMACAddress = (
           return _isMACAddress(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_a_mac_address',
+          id: message ?? 'e.y_v.s_must_be_a_mac_address',
         }),
       })
     }

@@ -22,7 +22,7 @@ export const isEAN = (
           return _isEAN(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_an_ean',
+          id: message ?? 'e.y_v.s_must_be_an_ean',
         }),
       })
     }

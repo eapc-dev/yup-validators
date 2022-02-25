@@ -39,7 +39,7 @@ export const isMobilePhone = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_a_mobile_phone' },
+                  { id: message ?? 'e.y_v.s_must_be_a_mobile_phone' },
                   {
                     locale: Array.isArray(locale) ? intl.formatList(locale) : locale,
                     ...options,

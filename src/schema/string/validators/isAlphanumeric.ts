@@ -39,7 +39,7 @@ export const isAlphanumeric = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_alphanumeric' },
+                  { id: message ?? 'e.y_v.s_must_be_alphanumeric' },
                   {
                     locale,
                     ...options,

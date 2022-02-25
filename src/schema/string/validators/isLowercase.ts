@@ -22,7 +22,7 @@ export const isLowercase = (
           return _isLowercase(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_lowercase',
+          id: message ?? 'e.y_v.s_must_be_lowercase',
         }),
       })
     }

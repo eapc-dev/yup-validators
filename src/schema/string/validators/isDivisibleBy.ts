@@ -31,7 +31,7 @@ export const isDivisibleBy = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_divisible_by' },
+                  { id: message ?? 'e.y_v.s_must_be_divisible_by' },
                   { number }
                 ),
               })

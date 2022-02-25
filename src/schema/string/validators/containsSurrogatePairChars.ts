@@ -22,7 +22,7 @@ export const containsSurrogatePairChars = (
           return isSurrogatePair(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_contains_surrogate_pairs_chars',
+          id: message ?? 'e.y_v.s_must_contains_surrogate_pairs_chars',
         }),
       })
     }

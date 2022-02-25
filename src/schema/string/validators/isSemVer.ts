@@ -22,7 +22,7 @@ export const isSemVer = (
           return _isSemVer(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_a_sem_ver',
+          id: message ?? 'e.y_v.s_must_be_a_sem_ver',
         }),
       })
     }

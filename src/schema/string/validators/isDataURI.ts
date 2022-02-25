@@ -22,7 +22,7 @@ export const isDataURI = (
           return _isDataURI(value)
         },
         message: intl.formatErrorMessage({
-          id: message ?? 'e.field.s_must_be_data_uri',
+          id: message ?? 'e.y_v.s_must_be_data_uri',
         }),
       })
     }

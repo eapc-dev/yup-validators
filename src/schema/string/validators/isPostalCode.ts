@@ -34,7 +34,7 @@ export const isPostalCode = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_a_postal_code' },
+                  { id: message ?? 'e.y_v.s_must_be_a_postal_code' },
                   { locale }
                 ),
               })

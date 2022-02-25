@@ -21,7 +21,7 @@ export const isAscii = (
 
           return _isAscii(value)
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_ascii' }),
+        message: intl.formatErrorMessage({ id: message ?? 'e.y_v.s_must_be_ascii' }),
       })
     }
 

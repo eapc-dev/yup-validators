@@ -22,7 +22,7 @@ export const isLatLong = (
 
           return _isLatLong(value)
         },
-        message: intl.formatErrorMessage({ id: message ?? 'e.field.s_must_be_a_lat_long' }),
+        message: intl.formatErrorMessage({ id: message ?? 'e.y_v.s_must_be_a_lat_long' }),
       })
     }
 

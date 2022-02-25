@@ -34,7 +34,7 @@ export const isHash = (
             ? true
             : this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.field.s_must_be_an_hash' },
+                  { id: message ?? 'e.y_v.s_must_be_an_hash' },
                   { algorithm }
                 ),
               })

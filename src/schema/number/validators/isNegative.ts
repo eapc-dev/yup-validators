@@ -14,7 +14,7 @@ export const isNegative = (
   return (schema, intl) => {
     if (active) {
       schema = schema.negative(
-        intl.formatErrorMessage({ id: message ?? 'e.field.n_must_be_negative' })
+        intl.formatErrorMessage({ id: message ?? 'e.y_v.n_must_be_negative' })
       )
     }
 
