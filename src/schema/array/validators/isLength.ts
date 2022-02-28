@@ -80,7 +80,7 @@ export const isLength = <T extends yup.AnySchema>(
           if (!minValid && !maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.a_min_max_length' },
+                { id: message ?? 'e.y_v.a_min_max_length' },
                 {
                   min: minValue,
                   min_included: minIncluded,
@@ -93,7 +93,7 @@ export const isLength = <T extends yup.AnySchema>(
             if (!minValid) {
               return this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.form.a_min_length' },
+                  { id: message ?? 'e.y_v.a_min_length' },
                   {
                     min: minValue,
                     min_included: minIncluded,
@@ -104,7 +104,7 @@ export const isLength = <T extends yup.AnySchema>(
           } else if (!maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.a_max_length' },
+                { id: message ?? 'e.y_v.a_max_length' },
                 {
                   max: maxValue,
                   max_included: maxIncluded,

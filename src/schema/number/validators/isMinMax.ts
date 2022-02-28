@@ -76,7 +76,7 @@ export const isMinMax = (
           if (!minValid && !maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.n_min_max' },
+                { id: message ?? 'e.y_v.n_min_max' },
                 {
                   min: minValue,
                   min_included: minIncluded,
@@ -89,7 +89,7 @@ export const isMinMax = (
             if (!minValid) {
               return this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.form.n_min' },
+                  { id: message ?? 'e.y_v.n_min' },
                   {
                     min: minValue,
                     min_included: minIncluded,
@@ -100,7 +100,7 @@ export const isMinMax = (
           } else if (!maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.n_max' },
+                { id: message ?? 'e.y_v.n_max' },
                 {
                   max: maxValue,
                   max_included: maxIncluded,

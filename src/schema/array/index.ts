@@ -15,7 +15,7 @@ export const schema = <T extends yup.AnySchema, Intl extends IIntlShape = IIntlS
     value = validator(value, intl)
   }
 
-  value.typeError(intl.formatErrorMessage({ id: 'e.form.a_type_error' }))
+  value.typeError(intl.formatErrorMessage({ id: 'e.y_v.a_type_error' }))
 
   return value
 }

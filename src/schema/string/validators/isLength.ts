@@ -78,7 +78,7 @@ export const isLength = (
           if (!minValid && !maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.s_min_max_length' },
+                { id: message ?? 'e.y_v.s_min_max_length' },
                 {
                   min: minValue,
                   min_included: minIncluded,
@@ -91,7 +91,7 @@ export const isLength = (
             if (!minValid) {
               return this.createError({
                 message: intl.formatErrorMessage(
-                  { id: message ?? 'e.form.s_min_length' },
+                  { id: message ?? 'e.y_v.s_min_length' },
                   {
                     min: minValue,
                     min_included: minIncluded,
@@ -102,7 +102,7 @@ export const isLength = (
           } else if (!maxValid) {
             return this.createError({
               message: intl.formatErrorMessage(
-                { id: message ?? 'e.form.s_max_length' },
+                { id: message ?? 'e.y_v.s_max_length' },
                 {
                   max: maxValue,
                   max_included: maxIncluded,

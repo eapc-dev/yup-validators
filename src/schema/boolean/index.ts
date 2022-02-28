@@ -14,7 +14,7 @@ export const schema = <Intl extends IIntlShape = IIntlShape>(
     value = validator(value, intl)
   }
 
-  value.typeError(intl.formatErrorMessage({ id: 'e.form.b_type_error' }))
+  value.typeError(intl.formatErrorMessage({ id: 'e.y_v.b_type_error' }))
 
   return value
 }
