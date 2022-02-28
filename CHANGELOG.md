@@ -1,3 +1,10 @@
+### [1.2.5](https://github.com/eapc-dev/yup-validators/compare/1.2.4...1.2.5) (2022-02-28)
+
+
+### Bug Fixes
+
+* changed some message ids ([a5fd4e7](https://github.com/eapc-dev/yup-validators/commit/a5fd4e7a22fa40b79e20f13a16a39a9dc37e4ca2))
+
 ### [1.2.4](https://github.com/eapc-dev/yup-validators/compare/1.2.3...1.2.4) (2022-02-25)
 
 
