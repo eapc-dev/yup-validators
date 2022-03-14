@@ -97,6 +97,8 @@ export const isLength = <T extends yup.AnySchema>(
                   {
                     min: minValue,
                     min_included: minIncluded,
+                    max: -1,
+                    max_included: false,
                   }
                 ),
               })
@@ -106,6 +108,8 @@ export const isLength = <T extends yup.AnySchema>(
               message: intl.formatErrorMessage(
                 { id: message ?? 'e.y_v.a_max_length' },
                 {
+                  min: -1,
+                  min_included: false,
                   max: maxValue,
                   max_included: maxIncluded,
                 }

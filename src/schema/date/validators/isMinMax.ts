@@ -104,6 +104,8 @@ export const isMinMax = (
                 {
                   min: minValue?.toDate(),
                   min_included: minIncluded,
+                  max: -1,
+                  max_included: false,
                 }
               ),
             })
@@ -112,6 +114,8 @@ export const isMinMax = (
               message: intl.formatErrorMessage(
                 { id: message ?? 'e.y_v.d_max' },
                 {
+                  min: -1,
+                  min_included: false,
                   max: maxValue?.toDate(),
                   max_included: maxIncluded,
                 }
