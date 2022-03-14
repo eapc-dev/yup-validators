@@ -93,8 +93,8 @@ export const isMinMax = (
                   {
                     min: minValue,
                     min_included: minIncluded,
-                    max: -1,
-                    max_included: false,
+                    max: maxValue ?? -1,
+                    max_included: maxIncluded,
                   }
                 ),
               })
@@ -104,8 +104,8 @@ export const isMinMax = (
               message: intl.formatErrorMessage(
                 { id: message ?? 'e.y_v.n_max' },
                 {
-                  min: -1,
-                  min_included: false,
+                  min: minValue ?? -1,
+                  min_included: minIncluded,
                   max: maxValue,
                   max_included: maxIncluded,
                 }

@@ -95,8 +95,8 @@ export const isLength = (
                   {
                     min: minValue,
                     min_included: minIncluded,
-                    max: -1,
-                    max_included: false,
+                    max: maxValue ?? -1,
+                    max_included: maxIncluded,
                   }
                 ),
               })
@@ -106,8 +106,8 @@ export const isLength = (
               message: intl.formatErrorMessage(
                 { id: message ?? 'e.y_v.s_max_length' },
                 {
-                  min: -1,
-                  min_included: false,
+                  min: minValue ?? -1,
+                  min_included: minIncluded,
                   max: maxValue,
                   max_included: maxIncluded,
                 }
