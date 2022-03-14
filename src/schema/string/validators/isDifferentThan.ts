@@ -3,9 +3,9 @@ import { IStringProps, TStringValidatorResult } from '../_types'
 
 export interface IIsDifferentThanProps {
   /**
-   * The list of blacklisted values. Can be either an array of string or just a string.
+   * The list of blacklisted values.
    */
-  values: string | string[]
+  values: string[]
 }
 
 /**
@@ -25,12 +25,8 @@ export const isDifferentThan = (
           const { values } = parseReference<IIsDifferentThanProps>(this, props)
 
           const whitelist = new Set<string>()
-          if (typeof values === 'string') {
-            whitelist.add(values)
-          } else {
-            for (const v of values) {
-              whitelist.add(v)
-            }
+          for (const v of values) {
+            whitelist.add(v)
           }
 
           const result = !whitelist.has(value)
@@ -41,7 +37,7 @@ export const isDifferentThan = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.y_v.s_is_different_than' },
                   {
-                    values: Array.isArray(values) ? intl.formatList(values) : values,
+                    values: intl.formatList(values),
                   }
                 ),
               })

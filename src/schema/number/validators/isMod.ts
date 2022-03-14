@@ -5,9 +5,9 @@ import { INumberProps, TNumberValidatorResult } from '../_types'
 
 export interface IIsModProps {
   /**
-   * The list of authorized values. Can be either an array of numbers or just a number.
+   * The list of authorized values.
    */
-  values: number | number[]
+  values: number[]
 
   /**
    * Wether a number should be a mod of every value.
@@ -34,12 +34,8 @@ export const isMod = (
           const { values, matchAll } = parseReference<IIsModProps>(this, props)
 
           const whitelist: Big[] = []
-          if (typeof values === 'number') {
-            whitelist.push(Big(values))
-          } else {
-            for (const v of values) {
-              whitelist.push(Big(v))
-            }
+          for (const v of values) {
+            whitelist.push(Big(v))
           }
 
           const valueBig = Big(value)
@@ -51,14 +47,12 @@ export const isMod = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.y_v.n_is_mod' },
                   {
-                    values: Array.isArray(values)
-                      ? intl.formatList(
-                          values.map((e) => intl.formatNumber(e)),
-                          {
-                            type: matchAll ? 'conjunction' : 'disjunction',
-                          }
-                        )
-                      : values,
+                    values: intl.formatList(
+                      values.map((e) => intl.formatNumber(e)),
+                      {
+                        type: matchAll ? 'conjunction' : 'disjunction',
+                      }
+                    ),
                   }
                 ),
               })

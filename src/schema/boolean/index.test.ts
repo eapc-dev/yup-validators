@@ -36,7 +36,7 @@ const SCHEMAS: [
       i18n.DEFAULT_INTL,
       boolean.isRequired(),
       boolean.isEqualTo({
-        values: false,
+        values: [false],
       })
     ),
     [0, false],
@@ -48,7 +48,7 @@ const SCHEMAS: [
       i18n.DEFAULT_INTL,
       boolean.isRequired(),
       boolean.isDifferentThan({
-        values: false,
+        values: [false],
       })
     ),
     [1, true],

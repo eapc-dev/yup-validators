@@ -3,9 +3,9 @@ import { IBooleanProps, TBooleanValidatorResult } from '../_types'
 
 export interface IIsDifferentThanProps {
   /**
-   * The list of blacklisted values. Can be either an array of boolean or just a boolean.
+   * The list of blacklisted values.
    */
-  values: boolean | boolean[]
+  values: boolean[]
 }
 
 /**
@@ -25,12 +25,8 @@ export const isDifferentThan = (
           const { values } = parseReference<IIsDifferentThanProps>(this, props)
 
           const whitelist = new Set<boolean>()
-          if (typeof values === 'boolean') {
-            whitelist.add(values)
-          } else {
-            for (const v of values) {
-              whitelist.add(v)
-            }
+          for (const v of values) {
+            whitelist.add(v)
           }
 
           const result = !whitelist.has(value)
@@ -41,9 +37,7 @@ export const isDifferentThan = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.y_v.b_is_different_than' },
                   {
-                    values: Array.isArray(values)
-                      ? intl.formatList(values.map((e) => e.toString()))
-                      : values,
+                    values: intl.formatList(values.map((e) => e.toString())),
                   }
                 ),
               })

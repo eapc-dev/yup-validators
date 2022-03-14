@@ -5,9 +5,9 @@ import { INumberProps, TNumberValidatorResult } from '../_types'
 
 export interface IIsEqualToProps {
   /**
-   * The list of authorized values. Can be either an array of numbers or just a number.
+   * The list of authorized values.
    */
-  values: number | number[]
+  values: number[]
 }
 
 /**
@@ -27,12 +27,8 @@ export const isEqualTo = (
           const { values } = parseReference<IIsEqualToProps>(this, props)
 
           const whitelist: Big[] = []
-          if (typeof values === 'number') {
-            whitelist.push(Big(values))
-          } else {
-            for (const v of values) {
-              whitelist.push(Big(v))
-            }
+          for (const v of values) {
+            whitelist.push(Big(v))
           }
 
           let result = false
@@ -49,9 +45,7 @@ export const isEqualTo = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.y_v.n_is_equal_to' },
                   {
-                    values: Array.isArray(values)
-                      ? intl.formatList(values.map((e) => intl.formatNumber(e)))
-                      : values,
+                    values: intl.formatList(values.map((e) => intl.formatNumber(e))),
                   }
                 ),
               })

@@ -68,7 +68,7 @@ const SCHEMAS: [
           i18n.DEFAULT_INTL,
           string.isRequired(),
           string.isEqualTo({
-            values: yup.ref('whitelist'),
+            values: [yup.ref('whitelist')],
           })
         ),
       },

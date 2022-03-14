@@ -5,9 +5,9 @@ import { IDateProps, TDateValidatorResult } from '../_types'
 
 export interface IIsDifferentThanProps {
   /**
-   * The list of blacklisted values. Can be either an array of date or just a date.
+   * The list of blacklisted values.
    */
-  values: Date | Date[]
+  values: Date[]
 }
 
 /**
@@ -28,12 +28,8 @@ export const isDifferentThan = (
           const { values } = parseReference<IIsDifferentThanProps>(this, props)
 
           const whitelist: dayjs.Dayjs[] = []
-          if (Array.isArray(values)) {
-            for (const v of values) {
-              whitelist.push(dayjs(v))
-            }
-          } else {
-            whitelist.push(dayjs(values))
+          for (const v of values) {
+            whitelist.push(dayjs(v))
           }
 
           let result = true
@@ -51,9 +47,7 @@ export const isDifferentThan = (
                 message: intl.formatErrorMessage(
                   { id: message ?? 'e.y_v.d_is_different_than' },
                   {
-                    values: Array.isArray(values)
-                      ? intl.formatList(values.map((e) => e.toString()))
-                      : values,
+                    values: intl.formatList(values.map((e) => e.toString())),
                   }
                 ),
               })
