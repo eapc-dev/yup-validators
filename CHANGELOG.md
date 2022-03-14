@@ -1,3 +1,12 @@
+### [1.2.6](https://github.com/eapc-dev/yup-validators/compare/1.2.5...1.2.6) (2022-03-14)
+
+
+### Bug Fixes
+
+* added some messages ([5d402e8](https://github.com/eapc-dev/yup-validators/commit/5d402e87c15cec9de46ee4b30d1f374c8d8f5be4))
+* isEqualTo, isDifferentThan and isMod will now only accepts an array of values ([e24e621](https://github.com/eapc-dev/yup-validators/commit/e24e621ecaf0fefb11ab32848acaebe2fc62cada))
+* length message will always include every parameters ([d673118](https://github.com/eapc-dev/yup-validators/commit/d673118de2140a8611fc83782a96e68b557c9562))
+
 ### [1.2.5](https://github.com/eapc-dev/yup-validators/compare/1.2.4...1.2.5) (2022-02-28)
 
 
