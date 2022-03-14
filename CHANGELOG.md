@@ -1,3 +1,10 @@
+### [1.2.7](https://github.com/eapc-dev/yup-validators/compare/1.2.6...1.2.7) (2022-03-14)
+
+
+### Bug Fixes
+
+* stupid error with min and max value returned ([ae0a20f](https://github.com/eapc-dev/yup-validators/commit/ae0a20fb8f42eaa88ac84c988c339bc13223bff5))
+
 ### [1.2.6](https://github.com/eapc-dev/yup-validators/compare/1.2.5...1.2.6) (2022-03-14)
 
 
