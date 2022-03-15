@@ -1,3 +1,10 @@
+## [1.3.0](https://github.com/eapc-dev/yup-validators/compare/1.2.7...1.3.0) (2022-03-15)
+
+
+### Features
+
+* added yup as an export ([cd7a9e5](https://github.com/eapc-dev/yup-validators/commit/cd7a9e54c42ad26368032b03d8e3f5b1a27fc7d8))
+
 ### [1.2.7](https://github.com/eapc-dev/yup-validators/compare/1.2.6...1.2.7) (2022-03-14)
 
 
