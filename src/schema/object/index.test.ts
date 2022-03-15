@@ -88,6 +88,77 @@ const SCHEMAS: [
       },
     ],
   ],
+  [
+    'password',
+    object.schema(
+      {
+        password: string.schema(
+          i18n.DEFAULT_INTL,
+          string.isRequired(),
+          string.isLength({
+            min: 8,
+            max: 16,
+            message: 'e.form.password_length',
+          }),
+          string.doesContain({
+            values: /\d/,
+            message: 'e.form.password_must_contain_number',
+          }),
+          string.doesContain({
+            values: /[a-z]/,
+            message: 'e.form.password_must_contain_lowercased_character',
+          }),
+          string.doesContain({
+            values: /[A-Z]/,
+            message: 'e.form.password_must_contain_uppercased_character',
+          })
+        ),
+        confirmPassword: yup.mixed().when('password', {
+          is: (value?: string) => value && value.length > 0,
+          then: string.schema(
+            i18n.DEFAULT_INTL,
+            string.isRequired(),
+            string.isEqualTo({ values: [yup.ref('password')], message: 'e.form.confirm_password' })
+          ),
+          otherwise: string.schema(
+            i18n.DEFAULT_INTL,
+            string.isRequired(),
+            string.isLength({
+              min: 8,
+              max: 16,
+              message: 'e.form.password_length',
+            }),
+            string.doesContain({
+              values: /\d/,
+              message: 'e.form.password_must_contain_number',
+            }),
+            string.doesContain({
+              values: /[a-z]/,
+              message: 'e.form.password_must_contain_lowercased_character',
+            }),
+            string.doesContain({
+              values: /[A-Z]/,
+              message: 'e.form.password_must_contain_uppercased_character',
+            })
+          ),
+        }),
+      },
+      i18n.DEFAULT_INTL,
+      object.isRequired()
+    ),
+    [
+      {
+        password: 'Test1234',
+        confirmPassword: 'Test1234',
+      },
+    ],
+    [
+      {
+        password: 'Test1234',
+        confirmPassword: 'Test1234!',
+      },
+    ],
+  ],
 ]
 
 describe('Object validation', () => {

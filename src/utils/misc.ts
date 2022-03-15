@@ -17,8 +17,11 @@ export const parseValue = <T>(
   context: yup.TestContext,
   value: Reference<T> | Maybe<T>
 ): Maybe<T> => {
-  if (value instanceof Reference) {
-    return getValueFromContext(context, value)
+  if (
+    value instanceof Reference ||
+    (typeof value === 'object' && (value as unknown as object).hasOwnProperty('getter'))
+  ) {
+    return getValueFromContext(context, value as Reference<T>)
   }
 
   if (
