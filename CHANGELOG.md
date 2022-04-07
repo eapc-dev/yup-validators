@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/eapc-dev/yup-validators/compare/1.3.0...1.4.0) (2022-04-07)
+
+
+### Features
+
+* added some locales ([6c5e268](https://github.com/eapc-dev/yup-validators/commit/6c5e268e502ad4028f159853a6f38fdcf7507022))
+
 ## [1.3.0](https://github.com/eapc-dev/yup-validators/compare/1.2.7...1.3.0) (2022-03-15)
 
 
