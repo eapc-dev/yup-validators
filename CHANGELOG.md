@@ -1,3 +1,10 @@
+### [1.4.1](https://github.com/eapc-dev/yup-validators/compare/1.4.0...1.4.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* number transform to return number instance and not Big instance ([99a8290](https://github.com/eapc-dev/yup-validators/commit/99a82903388d224fc42e19656dba731378495843))
+
 ## [1.4.0](https://github.com/eapc-dev/yup-validators/compare/1.3.0...1.4.0) (2022-04-07)
 
 
