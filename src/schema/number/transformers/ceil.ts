@@ -18,7 +18,7 @@ export const ceil = (props: ICeilProps & Omit<INumberProps, 'message'>): TNumber
   return (schema) => {
     if (active) {
       schema = schema.transform((v: unknown) =>
-        typeof v === 'number' ? Big(v).round(precision, Big.roundUp) : v
+        typeof v === 'number' ? Big(v).round(precision, Big.roundUp).toNumber() : v
       )
     }
 

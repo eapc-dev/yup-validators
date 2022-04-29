@@ -20,7 +20,7 @@ export const floor = (
   return (schema) => {
     if (active) {
       schema = schema.transform((v: unknown) =>
-        typeof v === 'number' ? Big(v).round(precision, Big.roundDown) : v
+        typeof v === 'number' ? Big(v).round(precision, Big.roundDown).toNumber() : v
       )
     }
 

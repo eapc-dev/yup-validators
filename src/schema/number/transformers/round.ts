@@ -20,7 +20,7 @@ export const round = (
   return (schema) => {
     if (active) {
       schema = schema.transform((v: unknown) =>
-        typeof v === 'number' ? Big(v).round(precision) : v
+        typeof v === 'number' ? Big(v).round(precision).toNumber() : v
       )
     }
 
