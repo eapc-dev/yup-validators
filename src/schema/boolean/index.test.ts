@@ -9,14 +9,14 @@ const SCHEMAS: [
   [
     'isRequired',
     boolean.schema(i18n.DEFAULT_INTL, boolean.isRequired()),
-    [1, 0, true, false],
-    [undefined, null],
+    [1, 0, true, false, undefined, null],
+    [],
   ],
   [
     '!isRequired',
     boolean.schema(i18n.DEFAULT_INTL, boolean.isRequired({ active: false })),
-    [1, 0, true, false, undefined],
-    [null],
+    [1, 0, true, false, undefined, null],
+    [],
   ],
   [
     'isTrue',
@@ -27,8 +27,8 @@ const SCHEMAS: [
   [
     'isFalse',
     boolean.schema(i18n.DEFAULT_INTL, boolean.isRequired(), boolean.isFalse()),
-    [0, false],
-    [1, true, undefined, null],
+    [0, false, undefined, null],
+    [1, true],
   ],
   [
     'isEqualTo',
@@ -39,8 +39,8 @@ const SCHEMAS: [
         values: [false],
       })
     ),
-    [0, false],
-    [1, true, undefined, null],
+    [0, false, undefined, null],
+    [1, true],
   ],
   [
     'isDifferentThan',

@@ -10,6 +10,9 @@ export const schema = <Intl extends IIntlShape = IIntlShape>(
 ): yup.BooleanSchema => {
   let value = new yup.BooleanSchema()
 
+  value = value.default(false)
+  value = value.transform((v) => !!v)
+
   for (const validator of validators) {
     value = validator(value, intl)
   }
