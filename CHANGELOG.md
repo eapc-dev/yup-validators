@@ -1,3 +1,10 @@
+### [1.4.2](https://github.com/eapc-dev/yup-validators/compare/1.4.1...1.4.2) (2022-05-05)
+
+
+### Bug Fixes
+
+* boolean will always be false if falsy value or true if truthy value ([3f2cdfc](https://github.com/eapc-dev/yup-validators/commit/3f2cdfc6450939a13ad35ca1aa66aa325446807c))
+
 ### [1.4.1](https://github.com/eapc-dev/yup-validators/compare/1.4.0...1.4.1) (2022-04-29)
 
 
