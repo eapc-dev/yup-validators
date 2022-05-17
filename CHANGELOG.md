@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/eapc-dev/yup-validators/compare/1.4.3...1.5.0) (2022-05-17)
+
+
+### Features
+
+* added isPaymentReference ([f9a960c](https://github.com/eapc-dev/yup-validators/commit/f9a960c15dc896405c3d910e08d3c9e642f11aee))
+
 ### [1.4.3](https://github.com/eapc-dev/yup-validators/compare/1.4.2...1.4.3) (2022-05-17)
 
 
