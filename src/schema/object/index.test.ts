@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-import { i18n, object, string } from '../../index'
+import { i18n, number, object, string } from '../../index'
 
 const SCHEMAS: [
   name: string,

@@ -17,6 +17,8 @@ export const schema = <T extends yup.AnySchema, Intl extends IIntlShape = IIntlS
 
   value = value.typeError(intl.formatErrorMessage({ id: 'e.y_v.a_type_error' }))
 
+  value = value.strict()
+
   return value
 }
 
