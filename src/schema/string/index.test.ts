@@ -152,6 +152,22 @@ const SCHEMAS: [
     ['coucou@eapc.be', 'coucou+jordan@eapc.be'],
     ['coucou@', 'coucou@eapc.b', 'coucou+jordan))@eapc.be'],
   ],
+  [
+    'isPaymentReference',
+    string.schema(i18n.DEFAULT_INTL, string.isRequired(), string.isPaymentReference()),
+    ['+++723/4871/44251+++'],
+    ['+++723/4871/44252+++', 'coucou@eapc.b', 'coucou+jordan))@eapc.be'],
+  ],
+  [
+    'isPaymentReference(optional)',
+    string.schema(
+      i18n.DEFAULT_INTL,
+      string.isRequired(),
+      string.isPaymentReference({ optional: true })
+    ),
+    ['+++723/4871/44251+++', '+++723/4871/44251++', 'coucou@eapc.b', 'coucou+jordan))@eapc.be'],
+    ['+++723/4871/44252+++'],
+  ],
 ]
 
 describe('String validation', () => {
