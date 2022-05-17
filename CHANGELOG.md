@@ -1,3 +1,10 @@
+### [1.5.1](https://github.com/eapc-dev/yup-validators/compare/1.5.0...1.5.1) (2022-05-17)
+
+
+### Bug Fixes
+
+* object and array schemas to be strict ([cb34af9](https://github.com/eapc-dev/yup-validators/commit/cb34af9e4d4d12d73afee8cb3d9c974d5f0af938))
+
 ## [1.5.0](https://github.com/eapc-dev/yup-validators/compare/1.4.3...1.5.0) (2022-05-17)
 
 
