@@ -1,3 +1,10 @@
+### [1.4.3](https://github.com/eapc-dev/yup-validators/compare/1.4.2...1.4.3) (2022-05-17)
+
+
+### Bug Fixes
+
+* typeError schema sould replace old schema ([f69c4f6](https://github.com/eapc-dev/yup-validators/commit/f69c4f63eed671fd5e340e072f5ce9b7712be24c))
+
 ### [1.4.2](https://github.com/eapc-dev/yup-validators/compare/1.4.1...1.4.2) (2022-05-05)
 
 
