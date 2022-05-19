@@ -1,3 +1,20 @@
+## [2.0.0](https://github.com/eapc-dev/yup-validators/compare/1.5.1...2.0.0) (2022-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* null will now be accepted and values will be defaulted to null now
+
+### Features
+
+* null will now be accepted and values will be defaulted to null now ([0cd511e](https://github.com/eapc-dev/yup-validators/commit/0cd511ef5a293c7f4c01c33fde9441d60db94f76))
+
+
+### Bug Fixes
+
+* boolean schema not undefined ([ccdbb42](https://github.com/eapc-dev/yup-validators/commit/ccdbb425200fb533b69ade200113ba8b0037ff48))
+* cleared some eslint errors ([ca5683b](https://github.com/eapc-dev/yup-validators/commit/ca5683b0aa2ede7b14401a05bea1bc2ed2863771))
+
 ### [1.5.1](https://github.com/eapc-dev/yup-validators/compare/1.5.0...1.5.1) (2022-05-17)
 
 
