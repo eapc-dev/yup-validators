@@ -10,10 +10,12 @@ export const schema = <T extends ObjectShape = {}>(
   intl: IIntlShape,
   ...validators: TObjectValidatorResult<T>[]
 ): yup.ObjectSchema<T> => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   let value = yup
     .object<T>(object)
     .typeError(intl.formatErrorMessage({ id: 'e.y_v.o_type_error' }))
     .default(null)
+    .nullable()
     .strict() as yup.ObjectSchema<T>
 
   for (const validator of validators) {

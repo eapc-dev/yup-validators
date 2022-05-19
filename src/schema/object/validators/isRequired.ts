@@ -14,8 +14,11 @@ export const isRequired = <T extends ObjectShape = {}>(
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
-    return active
-      ? schema.required(intl.formatErrorMessage({ id: message ?? 'e.y_v.is_required' }))
-      : schema.nullable()
+    if (active) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return schema.required(intl.formatErrorMessage({ id: message ?? 'e.y_v.is_required' }))
+    }
+
+    return schema
   }
 }

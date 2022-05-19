@@ -15,6 +15,7 @@ export const isOptional = <T extends ObjectShape = {}>(
 
   return (schema, intl) => {
     if (active) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return schema.optional()
     }
 

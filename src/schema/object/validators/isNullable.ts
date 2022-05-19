@@ -14,8 +14,11 @@ export const isNullable = <T extends ObjectShape = {}>(
   const { active = true } = props ?? {}
 
   return (schema, intl) => {
-    return active
-      ? schema.nullable()
-      : schema.required(intl.formatErrorMessage({ id: 'e.y_v.is_required' }))
+    if (active) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return schema.nullable()
+    }
+
+    return schema
   }
 }
