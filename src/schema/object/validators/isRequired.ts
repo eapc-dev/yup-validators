@@ -1,4 +1,3 @@
-import * as yup from 'yup'
 import { ObjectShape } from 'yup/lib/object'
 
 import { TReferenceProps } from '../../..'
@@ -15,12 +14,8 @@ export const isRequired = <T extends ObjectShape = {}>(
   const { active = true, message } = props ?? {}
 
   return (schema, intl) => {
-    if (active) {
-      schema = schema.required(
-        intl.formatErrorMessage({ id: message ?? 'e.y_v.is_required' })
-      ) as yup.ObjectSchema<T>
-    }
-
-    return schema
+    return active
+      ? schema.required(intl.formatErrorMessage({ id: message ?? 'e.y_v.is_required' }))
+      : schema.nullable()
   }
 }

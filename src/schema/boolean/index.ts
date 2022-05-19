@@ -8,16 +8,15 @@ export const schema = <Intl extends IIntlShape = IIntlShape>(
   intl: Intl,
   ...validators: TBooleanValidatorResult<Intl>[]
 ): yup.BooleanSchema => {
-  let value = new yup.BooleanSchema()
-
-  value = value.default(false)
-  value = value.transform((v) => !!v)
+  let value = yup
+    .boolean()
+    .typeError(intl.formatErrorMessage({ id: 'e.y_v.b_type_error' }))
+    .default(false)
+    .transform((v) => !!v)
 
   for (const validator of validators) {
     value = validator(value, intl)
   }
-
-  value = value.typeError(intl.formatErrorMessage({ id: 'e.y_v.b_type_error' }))
 
   return value
 }

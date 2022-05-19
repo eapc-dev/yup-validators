@@ -1,4 +1,3 @@
-import * as yup from 'yup'
 import { ObjectShape } from 'yup/lib/object'
 
 import { TReferenceProps } from '../../..'
@@ -16,7 +15,7 @@ export const isOptional = <T extends ObjectShape = {}>(
 
   return (schema, intl) => {
     if (active) {
-      schema = schema.optional() as yup.ObjectSchema<T>
+      return schema.optional()
     }
 
     return schema

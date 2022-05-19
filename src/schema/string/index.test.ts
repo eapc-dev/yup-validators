@@ -15,8 +15,8 @@ const SCHEMAS: [
   [
     '!isRequired',
     string.schema(i18n.DEFAULT_INTL, string.isRequired({ active: false })),
-    ['Coucou', 'ç', 'ça va', '', undefined, ''],
-    [null],
+    ['Coucou', 'ç', 'ça va', '', null, undefined],
+    [],
   ],
   [
     'isLength',

@@ -9,14 +9,14 @@ const SCHEMAS: [
   [
     'isRequired',
     number.schema(i18n.DEFAULT_INTL, number.isRequired()),
-    [0, 1, -1, 0.000_01],
+    [0, 1, -1, 0.000_01, '1'],
     [undefined, null, ''],
   ],
   [
     '!isRequired',
     number.schema(i18n.DEFAULT_INTL, number.isRequired({ active: false })),
-    [0, 1, -1, 0.000_01, undefined],
-    [null],
+    [0, 1, -1, 0.000_01, '1', null, undefined],
+    [{}, 'a'],
   ],
   [
     'isMinMax',

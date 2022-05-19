@@ -15,8 +15,8 @@ const SCHEMAS: [
   [
     '!isRequired',
     date.schema(i18n.DEFAULT_INTL, date.isRequired({ active: false })),
-    [new Date(), '1998-01-14', undefined],
-    [null],
+    [new Date(), '1998-01-14', null, undefined],
+    [],
   ],
   [
     'isMinMax',

@@ -8,13 +8,15 @@ export const schema = <Intl extends IIntlShape = IIntlShape>(
   intl: Intl,
   ...validators: TDateValidatorResult<Intl>[]
 ): yup.DateSchema => {
-  let value = new yup.DateSchema()
+  let value = yup
+    .date()
+    .typeError(intl.formatErrorMessage({ id: 'e.y_v.d_type_error' }))
+    .default(null)
+    .nullable() as yup.DateSchema
 
   for (const validator of validators) {
     value = validator(value, intl)
   }
-
-  value = value.typeError(intl.formatErrorMessage({ id: 'e.y_v.d_type_error' }))
 
   return value
 }

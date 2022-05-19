@@ -19,8 +19,8 @@ const SCHEMAS: [
       i18n.DEFAULT_INTL,
       array.isRequired({ active: false })
     ),
-    [[], undefined],
-    [null],
+    [[], null, undefined],
+    [],
   ],
   [
     'isEmail',
@@ -29,8 +29,8 @@ const SCHEMAS: [
       i18n.DEFAULT_INTL,
       array.isRequired({ active: false })
     ),
-    [[], ['coucou@eapc.be']],
-    [null, [null], [undefined], [''], ['coucou@']],
+    [null, [], ['coucou@eapc.be']],
+    [[null], [undefined], [''], ['coucou@']],
   ],
 ]
 

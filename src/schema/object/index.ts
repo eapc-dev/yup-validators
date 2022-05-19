@@ -10,17 +10,15 @@ export const schema = <T extends ObjectShape = {}>(
   intl: IIntlShape,
   ...validators: TObjectValidatorResult<T>[]
 ): yup.ObjectSchema<T> => {
-  let value = new yup.ObjectSchema<T>()
+  let value = yup
+    .object<T>(object)
+    .typeError(intl.formatErrorMessage({ id: 'e.y_v.o_type_error' }))
+    .default(null)
+    .strict() as yup.ObjectSchema<T>
 
   for (const validator of validators) {
     value = validator(value, intl)
   }
-
-  value = value.typeError(intl.formatErrorMessage({ id: 'e.y_v.o_type_error' }))
-
-  value = value.shape(object)
-
-  value = value.strict()
 
   return value
 }

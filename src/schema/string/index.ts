@@ -8,13 +8,15 @@ export const schema = <Intl extends IIntlShape = IIntlShape>(
   intl: Intl,
   ...validators: TStringValidatorResult<Intl>[]
 ): yup.StringSchema => {
-  let value = new yup.StringSchema()
+  let value = yup
+    .string()
+    .typeError(intl.formatErrorMessage({ id: 'e.y_v.s_type_error' }))
+    .default(null)
+    .nullable() as yup.StringSchema
 
   for (const validator of validators) {
     value = validator(value, intl)
   }
-
-  value = value.typeError(intl.formatErrorMessage({ id: 'e.y_v.s_type_error' }))
 
   return value
 }

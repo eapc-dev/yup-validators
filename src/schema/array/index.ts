@@ -9,15 +9,18 @@ export const schema = <T extends yup.AnySchema, Intl extends IIntlShape = IIntlS
   intl: Intl,
   ...validators: TArrayValidatorResult<T, Intl>[]
 ): yup.ArraySchema<T> => {
-  let value = new yup.ArraySchema<T>(array)
+  let value = yup
+    .array<T>(array)
+    .typeError(intl.formatErrorMessage({ id: 'e.y_v.a_type_error' }))
+    .default([])
+    .nullable()
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    .transform((v) => (v === null ? [] : v))
+    .strict() as yup.ArraySchema<T>
 
   for (const validator of validators) {
     value = validator(value, intl)
   }
-
-  value = value.typeError(intl.formatErrorMessage({ id: 'e.y_v.a_type_error' }))
-
-  value = value.strict()
 
   return value
 }

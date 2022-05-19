@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-import { i18n, object, string } from '../../index'
+import { array, i18n, number, object, string } from '../../index'
 
 const SCHEMAS: [
   name: string,
@@ -13,6 +13,12 @@ const SCHEMAS: [
     object.schema({}, i18n.DEFAULT_INTL, object.isRequired()),
     [{}, { a: 1 }],
     [null, undefined],
+  ],
+  [
+    '!isRequired',
+    object.schema({}, i18n.DEFAULT_INTL, object.isRequired({ active: false })),
+    [{}, { a: 1 }, null, undefined],
+    [],
   ],
   [
     '1 field',
@@ -174,4 +180,32 @@ describe('Object validation', () => {
       }
     })
   }
+
+  it('default to null', () => {
+    expect(
+      object
+        .schema(
+          {
+            digitalFile: object.schema(
+              {
+                id: number.schema(i18n.DEFAULT_INTL, number.isRequired()),
+              },
+              i18n.DEFAULT_INTL
+            ),
+            test: number.schema(i18n.DEFAULT_INTL),
+            testArr: array.schema(number.schema(i18n.DEFAULT_INTL), i18n.DEFAULT_INTL),
+          },
+          i18n.DEFAULT_INTL,
+          object.isRequired()
+        )
+        .cast({
+          digitalFile: undefined,
+          testArr: null,
+        })
+    ).toStrictEqual({
+      digitalFile: null,
+      test: null,
+      testArr: [],
+    })
+  })
 })
