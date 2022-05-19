@@ -15,7 +15,7 @@ export const isNullable = (
 
   return (schema, intl) => {
     if (active) {
-      schema = schema.nullable() as yup.BooleanSchema
+      schema = schema.nullable() as yup.BooleanSchema<boolean>
     }
 
     return schema
