@@ -1,19 +1,29 @@
 import dayjs from 'dayjs'
+import pluginTimezone from 'dayjs/plugin/timezone'
+import pluginUTC from 'dayjs/plugin/utc'
 
 import { IDateProps, TDateValidatorResult } from '../_types'
+
+dayjs.extend(pluginUTC)
+dayjs.extend(pluginTimezone)
 
 export interface ISetProps {
   /**
    * Unit to be used.
    */
   values: [unit: dayjs.UnitType, value: number][]
+
+  /**
+   * Timezone to be used.
+   */
+  timezone?: [tz: string, keepLocalTimes?: boolean]
 }
 
 /**
- * Modify the date.
+ * Set values on the date using `dayjs`.
  */
 export const set = (props: ISetProps & Omit<IDateProps, 'message'>): TDateValidatorResult => {
-  const { values, active = true } = props ?? {}
+  const { values, timezone, active = true } = props ?? {}
 
   return (schema) => {
     if (active) {
@@ -23,6 +33,7 @@ export const set = (props: ISetProps & Omit<IDateProps, 'message'>): TDateValida
           return v as unknown
         }
 
+        date = date.tz(timezone?.[0], timezone?.[1])
         for (const [unit, value] of values) {
           date = date.set(unit, value)
         }

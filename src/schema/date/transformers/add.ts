@@ -7,11 +7,11 @@ import { IDateProps, TDateValidatorResult } from '../_types'
 dayjs.extend(pluginUTC)
 dayjs.extend(pluginTimezone)
 
-export interface IEndOfProps {
+export interface IAddProps {
   /**
    * Unit to be used.
    */
-  unit: dayjs.OpUnitType
+  values: [unit: dayjs.ManipulateType, value: number][]
 
   /**
    * Timezone to be used.
@@ -20,12 +20,10 @@ export interface IEndOfProps {
 }
 
 /**
- * Set the date to the end of `unit`.
+ * Add values to the date using `dayjs`.
  */
-export const setEndOf = (
-  props: IEndOfProps & Omit<IDateProps, 'message'>
-): TDateValidatorResult => {
-  const { unit, timezone, active = true } = props ?? {}
+export const add = (props: IAddProps & Omit<IDateProps, 'message'>): TDateValidatorResult => {
+  const { values, timezone, active = true } = props ?? {}
 
   return (schema) => {
     if (active) {
@@ -40,7 +38,11 @@ export const setEndOf = (
           date = timezone[0] === 'utc' ? date.utc(timezone[1]) : date.tz(timezone[0], timezone[1])
         }
 
-        return date.endOf(unit).toDate()
+        for (const [unit, value] of values) {
+          date = date.add(value, unit)
+        }
+
+        return date.toDate()
       })
     }
 

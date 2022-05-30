@@ -84,4 +84,29 @@ describe('Date validation', () => {
       }
     })
   }
+
+  it('changing times on timezone (utc)', () => {
+    const schema = date.schema(
+      i18n.DEFAULT_INTL,
+      date.isRequired(),
+      date.setEndOf({
+        unit: 'day',
+        timezone: ['utc', true],
+      })
+    )
+
+    expect(schema.cast('1998-01-14T00:00:00.000Z')?.toISOString()).toBe('1998-01-14T23:59:59.999Z')
+  })
+
+  it('changing times on timezone', () => {
+    const schema = date.schema(
+      i18n.DEFAULT_INTL,
+      date.isRequired(),
+      date.setEndOf({
+        unit: 'day',
+      })
+    )
+
+    expect(schema.cast('1998-01-13T23:00:00.000Z')?.toISOString()).toBe('1998-01-14T22:59:59.999Z')
+  })
 })
