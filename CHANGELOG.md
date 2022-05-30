@@ -1,3 +1,12 @@
+## [2.1.0](https://github.com/eapc-dev/yup-validators/compare/2.0.0...2.1.0) (2022-05-30)
+
+
+### Features
+
+* added date timezone on transformers ([8245ebc](https://github.com/eapc-dev/yup-validators/commit/8245ebc43497f5b8a9e5fac00b814f3f6bb55ce4))
+* added date timezone to transformers ([d118cda](https://github.com/eapc-dev/yup-validators/commit/d118cda00f8793ce621faf9043096ff69c91480b))
+* added date timezone to transformers, also added add and subtract to dates ([2e2d3d2](https://github.com/eapc-dev/yup-validators/commit/2e2d3d2f83499d144814a93ee06e973d1d071bce))
+
 ## [2.0.0](https://github.com/eapc-dev/yup-validators/compare/1.5.1...2.0.0) (2022-05-19)
 
 
