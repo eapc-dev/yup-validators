@@ -12,7 +12,30 @@ export const schema = <T extends ObjectShape = {}>(
 ): yup.ObjectSchema<T> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   let value = yup
-    .object<T>(object)
+    .object<T>()
+    .shape(object)
+    .typeError(intl.formatErrorMessage({ id: 'e.y_v.o_type_error' }))
+    .default(null)
+    .nullable()
+    .strict() as yup.ObjectSchema<T>
+
+  for (const validator of validators) {
+    value = validator(value, intl)
+  }
+
+  return value
+}
+
+export const schemaExcludes = <T extends ObjectShape = {}>(
+  object: T,
+  excludes: [string, string][],
+  intl: IIntlShape,
+  ...validators: TObjectValidatorResult<T>[]
+): yup.ObjectSchema<T> => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  let value = yup
+    .object<T>()
+    .shape(object, excludes)
     .typeError(intl.formatErrorMessage({ id: 'e.y_v.o_type_error' }))
     .default(null)
     .nullable()
