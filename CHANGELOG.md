@@ -1,3 +1,10 @@
+## [2.2.0](https://github.com/eapc-dev/yup-validators/compare/2.1.0...2.2.0) (2022-08-03)
+
+
+### Features
+
+* added schemaExcludes() on object ([554a0e3](https://github.com/eapc-dev/yup-validators/commit/554a0e373a0f9dc1777d8dc16a1e8d2d2e6d78e9))
+
 ## [2.1.0](https://github.com/eapc-dev/yup-validators/compare/2.0.0...2.1.0) (2022-05-30)
 
 
