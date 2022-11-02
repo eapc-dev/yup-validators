@@ -39,7 +39,7 @@
     "email": "pro.jordan.monier@gmail.com"
   },
   "dependencies": {
-    "@formatjs/intl": "^2.0.0",
+    "@formatjs/intl": "^2.5.1",
     "big.js": "^6.1.1",
     "dayjs": "^1.10.7",
     "lodash.mapkeys": "^4.6.0",
