@@ -4,7 +4,7 @@
     "name": "Jordan Monier",
     "email": "pro.jordan.monier@gmail.com"
   },
-  "version": "2.2.0",
+  "version": "2.3.0",
   "main": "dist/index.js",
   "license": "MIT",
   "sideEffects": false,
