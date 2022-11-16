@@ -1,13 +1,13 @@
 import * as yup from 'yup'
 import { ObjectShape } from 'yup/lib/object'
 
-import { IIntlShape } from '../../i18n/placeholder'
+import { IIntlShapeRich } from '../../i18n/placeholder'
 
 import { TObjectValidatorResult } from './_types'
 
 export const schema = <T extends ObjectShape = {}>(
   object: T,
-  intl: IIntlShape,
+  intl: IIntlShapeRich,
   ...validators: TObjectValidatorResult<T>[]
 ): yup.ObjectSchema<T> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -29,7 +29,7 @@ export const schema = <T extends ObjectShape = {}>(
 export const schemaExcludes = <T extends ObjectShape = {}>(
   object: T,
   excludes: [string, string][],
-  intl: IIntlShape,
+  intl: IIntlShapeRich,
   ...validators: TObjectValidatorResult<T>[]
 ): yup.ObjectSchema<T> => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call

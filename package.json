@@ -1,23 +1,24 @@
 {
   "name": "yup-validators",
+  "version": "3.0.0",
+  "license": "MIT",
   "author": {
     "name": "Jordan Monier",
     "email": "pro.jordan.monier@gmail.com"
   },
-  "version": "2.3.0",
-  "main": "dist/index.js",
-  "license": "MIT",
-  "sideEffects": false,
-  "scripts": {
-    "test": "jest src",
-    "test:watch": "jest src --watchAll",
-    "lint": "eslint \"{src,specs}/**/*.{ts,tsx,js,jsx}\" --color --no-error-on-unmatched-pattern",
-    "format": "prettier --write \"{src,specs}/**/*.{ts,tsx,js,jsx}\"",
-    "build": "tsc -p ./tsconfig.build.json",
-    "prepare": "husky install",
-    "release": "release-it",
-    "extract": "formatjs extract -- 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file src/i18n/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'"
+  "main": "./dist/yup-validators.umd.cjs",
+  "module": "./dist/yup-validators.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/yup-validators.js",
+      "require": "./dist/yup-validators.umd.cjs"
+    }
   },
+  "files": [
+    "dist",
+    "locales"
+  ],
   "keywords": [
     "yup",
     "validator",
@@ -38,14 +39,23 @@
     "url": "https://github.com/eapc-dev/yup-validators/issues",
     "email": "pro.jordan.monier@gmail.com"
   },
+  "scripts": {
+    "test": "jest src",
+    "test:watch": "jest src --watchAll",
+    "lint": "eslint \"{src,specs}/**/*.{ts,tsx,js,jsx}\" --color --no-error-on-unmatched-pattern",
+    "format": "prettier --write \"{src,specs}/**/*.{ts,tsx,js,jsx}\"",
+    "build": "tsc ",
+    "prepare": "husky install",
+    "release": "release-it",
+    "extract": "formatjs extract -- 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file src/i18n/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'"
+  },
   "dependencies": {
     "@formatjs/intl": "^2.5.1",
-    "big.js": "^6.1.1",
-    "dayjs": "^1.10.7",
+    "big.js": "^6.2.1",
+    "dayjs": "^1.11.6",
     "lodash.mapkeys": "^4.6.0",
     "lodash.orderby": "^4.6.0",
     "lodash.snakecase": "^4.1.1",
-    "react-intl": "^5.24.6",
     "validator": "^13.7.0",
     "yup": "^0.32.11"
   },
@@ -56,14 +66,13 @@
     "@commitlint/config-conventional": "^16.0.0",
     "@formatjs/cli": "^4.8.2",
     "@release-it/conventional-changelog": "^4.0.0",
-    "@types/big.js": "^6.1.3",
+    "@types/big.js": "^6.1.6",
     "@types/jest": "^27.4.0",
     "@types/lodash.mapkeys": "^4.6.6",
     "@types/lodash.orderby": "^4.6.6",
     "@types/lodash.snakecase": "^4.1.6",
-    "@types/node": "^17.0.8",
-    "@types/react": "^17.0.38",
-    "@types/validator": "^13.7.1",
+    "@types/node": "^17.0.45",
+    "@types/validator": "^13.7.10",
     "eslint-config-jordanmonier": "^4.0.1",
     "husky": "^7.0.4",
     "jest": "^27.4.7",

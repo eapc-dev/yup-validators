@@ -1,10 +1,10 @@
 import * as yup from 'yup'
 
-import { IIntlShape } from '../../i18n/placeholder'
+import { IIntlShapeRich } from '../../i18n/placeholder'
 
 import { TArrayValidatorResult } from './_types'
 
-export const schema = <T extends yup.AnySchema, Intl extends IIntlShape = IIntlShape>(
+export const schema = <T extends yup.AnySchema, Intl extends IIntlShapeRich = IIntlShapeRich>(
   array: T,
   intl: Intl,
   ...validators: TArrayValidatorResult<T, Intl>[]
