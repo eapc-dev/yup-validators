@@ -1,14 +1,14 @@
 import * as yup from 'yup'
 
 import { IProps, TValidator, TValidatorResult } from '../../_types'
-import { IIntlShape } from '../../i18n/placeholder'
+import { IIntlShapeRich } from '../../i18n/placeholder'
 
-export type TNumberValidatorResult<Intl extends IIntlShape = IIntlShape> = TValidatorResult<
+export type TNumberValidatorResult<Intl extends IIntlShapeRich = IIntlShapeRich> = TValidatorResult<
   yup.NumberSchema,
   Intl
 >
 
-export type TNumberValidator<Intl extends IIntlShape = IIntlShape> = TValidator<
+export type TNumberValidator<Intl extends IIntlShapeRich = IIntlShapeRich> = TValidator<
   yup.NumberSchema,
   Intl
 >

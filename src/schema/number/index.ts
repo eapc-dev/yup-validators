@@ -1,10 +1,10 @@
 import * as yup from 'yup'
 
-import { IIntlShape } from '../../i18n/placeholder'
+import { IIntlShapeRich } from '../../i18n/placeholder'
 
 import { TNumberValidatorResult } from './_types'
 
-export const schema = <Intl extends IIntlShape = IIntlShape>(
+export const schema = <Intl extends IIntlShapeRich = IIntlShapeRich>(
   intl: Intl,
   ...validators: TNumberValidatorResult<Intl>[]
 ): yup.NumberSchema => {
