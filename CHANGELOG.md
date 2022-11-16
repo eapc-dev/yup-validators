@@ -1,3 +1,14 @@
+## [3.0.0](https://github.com/eapc-dev/yup-validators/compare/2.3.0...3.0.0) (2022-11-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* switch from react-intl to @formatjs/intl
+
+### Bug Fixes
+
+* switch from react-intl to @formatjs/intl ([9b38f19](https://github.com/eapc-dev/yup-validators/commit/9b38f192d71432690ab1e640fa5142baab254b48))
+
 ## [2.3.0](https://github.com/eapc-dev/yup-validators/compare/2.2.0...2.3.0) (2022-11-02)
 
 
